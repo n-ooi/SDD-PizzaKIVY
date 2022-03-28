@@ -9,31 +9,31 @@ WindowManager:
 
 ######## PRICES FOR PIZZAS #########
 #:set PriceforP1 18.50
-#:set PriceforP2 17.50
+#:set PriceforP2 18.00
 #:set PriceforP3 19.50
-#:set PriceforP4 21.00
-#:set PriceforP5 15.50
-#:set PriceforP6 18.00
-#:set PriceforP7 22.50
-#:set PriceforP8 20.50
-#:set PriceforP9 16.50
-#:set PriceforP10 28.00
-#:set PriceforP11 13.50
-#:set PriceforP12 11.00
+#:set PriceforP4 20.00
+#:set PriceforP5 18.50
+#:set PriceforP6 16.00
+#:set PriceforP7 11.50
+#:set PriceforP8 12.50
+#:set PriceforP9 17.00
+#:set PriceforP10 16.50
+#:set PriceforP11 18.00
+#:set PriceforP12 17.00
 
 ######## NAMES OF PIZZAS #########
-#:set NameofP1 "BBQ Bonanza"
-#:set NameofP2 "Pizza 2"
-#:set NameofP3 "Pizza 3"
-#:set NameofP4 "Pizza 4"
-#:set NameofP5 "Pizza 5"
-#:set NameofP6 "Pizza 6"
-#:set NameofP7 "Pizza 7"
-#:set NameofP8 "Pizza 8"
-#:set NameofP9 "Pizza 9"
-#:set NameofP10 "Pizza 10"
-#:set NameofP11 "Pizza 11"
-#:set NameofP12 "Pizza 12"
+#:set NameofP1 "Vegan Roasted Pineapple"
+#:set NameofP2 "Tandoori Chicken"
+#:set NameofP3 "Chicken 'n' Avo"
+#:set NameofP4 "Beef 'n' Shrooms"
+#:set NameofP5 "Mary's Little Lamb"
+#:set NameofP6 "Egg 'n' Bacon"
+#:set NameofP7 "Basic Margherita"
+#:set NameofP8 "Aloha"
+#:set NameofP9 "Veges 'n' Veges"
+#:set NameofP10 "Gourmet Pepperoni"
+#:set NameofP11 "Peri Peri"
+#:set NameofP12 "Mystery Meat"
 
 ######## PRICES FOR DRINKS #########
 #:set PriceforD1 4.50
@@ -51,17 +51,17 @@ WindowManager:
 
 ######## NAMES OF DRINKS #########
 #:set NameofD1 "Sprite"
-#:set NameofD2 "Drink 2"
-#:set NameofD3 "Drink 3"
-#:set NameofD4 "Drink 4"
-#:set NameofD5 "Drink 5"
-#:set NameofD6 "Drink 6"
+#:set NameofD2 "Coca Cola"
+#:set NameofD3 "Solo"
+#:set NameofD4 "Fanta"
+#:set NameofD5 "Bottled Water"
+#:set NameofD6 "Lightly Sparkling Water"
 #:set NameofD7 "Drink 7"
 #:set NameofD8 "Drink 8"
-#:set NameofD9 "Drink 9"
-#:set NameofD10 "Drink 10"
-#:set NameofD11 "Drink 11"
-#:set NameofD12 "Drink 12"
+#:set NameofD9 "Choccy Shake"
+#:set NameofD10 "Berry Good Shake"
+#:set NameofD11 "Vanilla Shake"
+#:set NameofD12 "Caramel Shake"
 
 ##########################################################################################################
 <HomeScreen@Screen>:
@@ -200,7 +200,7 @@ WindowManager:
                         size: self.size
                 GridLayout:
                     size_hint_y: None
-                    cols: 2
+                    cols: 3
                     padding: "80dp"
                     spacing: "80dp"
                     height: self.minimum_height
@@ -210,7 +210,7 @@ WindowManager:
 # // Pizza 1
                     PizzaItem:
                         Image:
-                            source: "images/pizza.png"
+                            source: "images/pizzas/pizza1.png"
                         PizzaName:
                             text: NameofP1
                         PizzaDetails:
@@ -232,7 +232,7 @@ WindowManager:
 # // Pizza 2
                     PizzaItem:
                         Image:
-                            source: "images/pizza.png"
+                            source: "images/pizzas/pizza2.png"
                         PizzaName:
                             text: NameofP2
                         PizzaDetails:
@@ -255,7 +255,7 @@ WindowManager:
 # // Pizza 3
                     PizzaItem:
                         Image:
-                            source: "images/pizza.png"
+                            source: "images/pizzas/pizza3.png"
                         PizzaName:
                             text: NameofP3
                         PizzaDetails:
@@ -277,7 +277,7 @@ WindowManager:
 # // Pizza 4
                     PizzaItem:
                         Image:
-                            source: "images/pizza.png"
+                            source: "images/pizzas/pizza4.png"
                         PizzaName:
                             text: NameofP4
                         PizzaDetails:
@@ -299,7 +299,7 @@ WindowManager:
 # // Pizza 5
                     PizzaItem:
                         Image:
-                            source: "images/pizza.png"
+                            source: "images/pizzas/pizza5.png"
                         PizzaName:
                             text: NameofP5
                         PizzaDetails:
@@ -321,7 +321,7 @@ WindowManager:
 # // Pizza 6
                     PizzaItem:
                         Image:
-                            source: "images/pizza.png"
+                            source: "images/pizzas/pizza6.png"
                         PizzaName:
                             text: NameofP6
                         PizzaDetails:
@@ -343,7 +343,7 @@ WindowManager:
 # // Pizza 7
                     PizzaItem:
                         Image:
-                            source: "images/pizza.png"
+                            source: "images/pizzas/pizza7.png"
                         PizzaName:
                             text: NameofP7
                         PizzaDetails:
@@ -365,7 +365,7 @@ WindowManager:
 # // Pizza 8
                     PizzaItem:
                         Image:
-                            source: "images/pizza.png"
+                            source: "images/pizzas/pizza8.png"
                         PizzaName:
                             text: NameofP8
                         PizzaDetails:
@@ -386,7 +386,7 @@ WindowManager:
 # // Pizza 9
                     PizzaItem:
                         Image:
-                            source: "images/pizza.png"
+                            source: "images/pizzas/pizza9.png"
                         PizzaName:
                             text: NameofP9
                         PizzaDetails:
@@ -408,7 +408,7 @@ WindowManager:
 # // Pizza 10
                     PizzaItem:
                         Image:
-                            source: "images/pizza.png"
+                            source: "images/pizzas/pizza10.png"
                         PizzaName:
                             text: NameofP10
                         PizzaDetails:
@@ -430,7 +430,7 @@ WindowManager:
 # // Pizza 11
                     PizzaItem:
                         Image:
-                            source: "images/pizza.png"
+                            source: "images/pizzas/pizza11.png"
                         PizzaName:
                             text: NameofP11
                         PizzaDetails:
@@ -452,7 +452,7 @@ WindowManager:
 # // Pizza 12
                     PizzaItem:
                         Image:
-                            source: "images/pizza.png"
+                            source: "images/pizzas/pizza12.png"
                         PizzaName:
                             text: NameofP12
                         PizzaDetails:
@@ -568,7 +568,7 @@ WindowManager:
                         size: self.size
                 GridLayout:
                     size_hint_y: None
-                    cols: 2
+                    cols: 3
                     padding: "80dp"
                     spacing: "80dp"
                     height: self.minimum_height
@@ -577,10 +577,10 @@ WindowManager:
 ##########################################################################################################
 # // drink 1
                     MDCard:
-                        padding: "50dp"
+                        padding: "20dp"
                         spacing: "20dp"
                         orientation: "vertical"
-                        height: "600dp"
+                        height: "500dp"
                         size_hint: 1,None
                         elevation: elevationV
                         border_radius: 50
@@ -588,7 +588,7 @@ WindowManager:
                         md_bg_color: 1,1,1,1
 
                         Image:
-                            source: "images/drink.png"
+                            source: "images/drinks/drink1.png"
                         drinkName:
                             text: NameofD1
                         drinkDetails:
@@ -612,7 +612,7 @@ WindowManager:
 # // drink 2
                     drinkItem:
                         Image:
-                            source: "images/drink.png"
+                            source: "images/drinks/drink2.png"
                         drinkName:
                             text: NameofD2
                         drinkDetails:
@@ -637,7 +637,7 @@ WindowManager:
 # // drink 3
                     drinkItem:
                         Image:
-                            source: "images/drink.png"
+                            source: "images/drinks/drink3.png"
                         drinkName:
                             text: NameofD3
                         drinkDetails:
@@ -661,7 +661,7 @@ WindowManager:
 # // drink 4
                     drinkItem:
                         Image:
-                            source: "images/drink.png"
+                            source: "images/drinks/drink4.png"
                         drinkName:
                             text: NameofD4
                         drinkDetails:
@@ -685,7 +685,7 @@ WindowManager:
 # // drink 5
                     drinkItem:
                         Image:
-                            source: "images/drink.png"
+                            source: "images/drinks/drink5.webp"
                         drinkName:
                             text: NameofD5
                         drinkDetails:
@@ -709,7 +709,7 @@ WindowManager:
 # // drink 6
                     drinkItem:
                         Image:
-                            source: "images/drink.png"
+                            source: "images/drinks/drink6.webp"
                         drinkName:
                             text: NameofD6
                         drinkDetails:
@@ -780,7 +780,7 @@ WindowManager:
 # // drink 9
                     drinkItem:
                         Image:
-                            source: "images/drink.png"
+                            source: "images/drinks/drink9.png"
                         drinkName:
                             text: NameofD9
                         drinkDetails:
@@ -804,7 +804,7 @@ WindowManager:
 # // drink 10
                     drinkItem:
                         Image:
-                            source: "images/drink.png"
+                            source: "images/drinks/drink10.png"
                         drinkName:
                             text: NameofD10
                         drinkDetails:
@@ -828,7 +828,7 @@ WindowManager:
 # // drink 11
                     drinkItem:
                         Image:
-                            source: "images/drink.png"
+                            source: "images/drinks/drink11.png"
                         drinkName:
                             text: NameofD11
                         drinkDetails:
@@ -852,7 +852,7 @@ WindowManager:
 # // drink 12
                     drinkItem:
                         Image:
-                            source: "images/drink.png"
+                            source: "images/drinks/drink12.png"
                         drinkName:
                             text: NameofD12
                         drinkDetails:
@@ -917,12 +917,10 @@ WindowManager:
 #######################################################################################
         BoxLayout:
             orientation: "horizontal"
-            MDCard:
+            BoxLayout:
                 orientation: "vertical"
                 padding: "50dp"
                 spacing: "20dp"
-                border_radius: 50
-                radius: [50]
                 size_hint: .5,1
                 canvas.before:
                     Color:
@@ -1127,12 +1125,10 @@ WindowManager:
                         color: 0.7,0,0
                         bold: True
     # ------------------------------------------------------------------
-            MDCard:
+            BoxLayout:
                 orientation: "vertical"
                 padding: "50dp"
                 spacing: "20dp"
-                border_radius: 50
-                radius: [50]
                 size_hint: .5,1
                 canvas.before:
                     Color:
@@ -1322,6 +1318,7 @@ WindowManager:
                         color: 0,0,0
     # ------------------------------------------------------------------
                 MDCard:
+                    size_hint: 1, 1
                     Label:
                         text: "Total"
                         color: 0.7,0,0
@@ -1341,10 +1338,10 @@ WindowManager:
 
 ##########################################################################################################
 <PizzaItem@MDCard>:
-    padding: "50dp"
+    padding: "20dp"
     spacing: "20dp"
     orientation: "vertical"
-    height: "600dp"
+    height: "500dp"
     size_hint: 1,None
     elevation: elevationV
     border_radius: 50
@@ -1369,7 +1366,7 @@ WindowManager:
 
 <PizzaDetails@BoxLayout>:
     size_hint: 1,.3
-    spacing: "100dp"
+    spacing: "40dp"
     padding: "15dp"
     pos_hint: {'center_x': .5, 'center_y': .5}
 
@@ -1384,7 +1381,7 @@ WindowManager:
 
 <drinkDetails@BoxLayout>:
     size_hint: 1,.3
-    spacing: "100dp"
+    spacing: "40dp"
     padding: "15dp"
     pos_hint: {'center_x': .5, 'center_y': .5}
 
@@ -1398,10 +1395,10 @@ WindowManager:
     color: 0.7,0,0
 
 <drinkItem@MDCard>:
-    padding: "50dp"
+    padding: "20dp"
     spacing: "20dp"
     orientation: "vertical"
-    height: "600dp"
+    height: "500dp"
     size_hint: 1,None
     elevation: elevationV
     border_radius: 50

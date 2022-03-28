@@ -27,7 +27,7 @@ class PizzaOrdering(Screen):
         root.sumPQ = root.pizza1x + root.pizza2x + root.pizza3x + root.pizza4x + root.pizza5x + root.pizza6x + root.pizza7x + root.pizza8x + root.pizza9x + root.pizza10x + root.pizza11x + root.pizza12x
 
     def sum_pizza_price(self, root):
-        root.sumPP = root.pizza1x*18.5 + root.pizza2x*17.5 + root.pizza3x*19.5 + root.pizza4x*21.0 + root.pizza5x*15.5 + root.pizza6x*18.0 + root.pizza7x*22.5 + root.pizza8x*20.5 + root.pizza9x*16.5 + root.pizza10x*28.0 + root.pizza11x*13.5 + root.pizza12x*11.0
+        root.sumPP = root.pizza1x*18.5 + root.pizza2x*18.0 + root.pizza3x*19.5 + root.pizza4x*20.0 + root.pizza5x*18.5 + root.pizza6x*16.0 + root.pizza7x*11.5 + root.pizza8x*12.5 + root.pizza9x*17.0 + root.pizza10x*16.5 + root.pizza11x*18 + root.pizza12x*17.0
 
     def n_plus1(self,root):
         root.pizza1x +=1
@@ -142,7 +142,6 @@ class DrinkOrdering(Screen):
 
     def n_plus1(self,root):
         root.drink1x +=1
-        # root.sum = sum(drinks)
 
     def n_minus1(self,root):
         if root.drink1x > 0:
