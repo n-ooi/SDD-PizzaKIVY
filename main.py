@@ -1,235 +1,162 @@
+from kivy.core.window import Window
 from kivy.lang import Builder
+from kivy.properties import NumericProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivymd.app import MDApp
-from kivy.core.window import Window
-from kivy.properties import ListProperty, NumericProperty, StringProperty, ReferenceListProperty
-import time
 
+
+ProductsInCart = [["Vegan Roasted Pineapple", 0, 18.50], ["Tandoori Chicken", 0, 18], ["Chicken 'n' Avo", 0, 19.50],
+                  ["Beef 'n' Shrooms", 0, 20], ["Mary's Little Lamb", 0, 18.5], ["Egg 'n' Bacon", 0, 16],
+                  ["Basic Margherita", 0, 11.50], ["Aloha", 0, 12.50], ["Veges 'n' Veges", 0, 17],
+                  ["Gourmet Pepperoni", 0, 16.50], ["Peri Peri", 0, 18], ["Mystery Meat", 0, 17.00],
+
+                  ["Sprite", 0, 4.50], ["Coca Cola", 0, 4.50], ["Solo", 0, 4.50],
+                  ["Fanta", 0, 4.50], ["Bottled Water", 0, 1], ["Lightly Sparkling Water", 0, 2],
+                  ["Drink 7", 0, 6.50], ["Drink 8", 0, 6.50], ["Choccy Shake", 0, 10.50],
+                  ["Berry Good Shake", 0, 10.50], ["Vanilla Shake", 0, 10.50], ["Caramel Shake", 0, 10.50]]
+PriceInfo = [0, 0, 0, "0%", 0]
 
 class PizzaOrdering(Screen):
-    sumPQ = NumericProperty(0)
-    sumPP = NumericProperty(0)
-    pizza1x = NumericProperty(0)
-    pizza2x = NumericProperty(0)
-    pizza3x = NumericProperty(0)
-    pizza4x = NumericProperty(0)
-    pizza5x = NumericProperty(0)
-    pizza6x = NumericProperty(0)
-    pizza7x = NumericProperty(0)
-    pizza8x = NumericProperty(0)
-    pizza9x = NumericProperty(0)
-    pizza10x = NumericProperty(0)
-    pizza11x = NumericProperty(0)
-    pizza12x = NumericProperty(0)
-    pizzas = ListProperty([pizza1x,pizza2x,pizza3x,pizza4x,pizza5x,pizza6x,pizza7x,pizza8x,pizza9x,pizza10x,pizza11x,pizza12x])
+    pizza1x = NumericProperty(ProductsInCart[0][1])
+    pizza2x = NumericProperty(ProductsInCart[1][1])
+    pizza3x = NumericProperty(ProductsInCart[2][1])
+    pizza4x = NumericProperty(ProductsInCart[3][1])
+    pizza5x = NumericProperty(ProductsInCart[4][1])
+    pizza6x = NumericProperty(ProductsInCart[5][1])
+    pizza7x = NumericProperty(ProductsInCart[6][1])
+    pizza8x = NumericProperty(ProductsInCart[7][1])
+    pizza9x = NumericProperty(ProductsInCart[8][1])
+    pizza10x = NumericProperty(ProductsInCart[9][1])
+    pizza11x = NumericProperty(ProductsInCart[10][1])
+    pizza12x = NumericProperty(ProductsInCart[11][1])
 
-    def sum_pizzas(self, root):
-        root.sumPQ = root.pizza1x + root.pizza2x + root.pizza3x + root.pizza4x + root.pizza5x + root.pizza6x + root.pizza7x + root.pizza8x + root.pizza9x + root.pizza10x + root.pizza11x + root.pizza12x
+    def add_product(self, index, root):
+        ProductsInCart[index][1] = ProductsInCart[index][1] + 1
 
-    def sum_pizza_price(self, root):
-        root.sumPP = root.pizza1x*18.5 + root.pizza2x*18.0 + root.pizza3x*19.5 + root.pizza4x*20.0 + root.pizza5x*18.5 + root.pizza6x*16.0 + root.pizza7x*11.5 + root.pizza8x*12.5 + root.pizza9x*17.0 + root.pizza10x*16.5 + root.pizza11x*18 + root.pizza12x*17.0
+        root.pizza1x = (ProductsInCart[0][1])
+        root.pizza2x = (ProductsInCart[1][1])
+        root.pizza3x = (ProductsInCart[2][1])
+        root.pizza4x = (ProductsInCart[3][1])
+        root.pizza5x = (ProductsInCart[4][1])
+        root.pizza6x = (ProductsInCart[5][1])
+        root.pizza7x = (ProductsInCart[6][1])
+        root.pizza8x = (ProductsInCart[7][1])
+        root.pizza9x = (ProductsInCart[8][1])
+        root.pizza10x = (ProductsInCart[9][1])
+        root.pizza11x = (ProductsInCart[10][1])
+        root.pizza12x = (ProductsInCart[11][1])
 
-    def n_plus1(self,root):
-        root.pizza1x +=1
-        # root.sum = sum(pizzas)
+        print(ProductsInCart[index])
 
-    def n_minus1(self,root):
-        if root.pizza1x > 0:
-            root.pizza1x += -1
+    def remove_product(self, index, root):
+        if ProductsInCart[index][1] > 0:
+            ProductsInCart[index][1] = ProductsInCart[index][1] - 1
 
-    def n_plus2(self, root):
-        root.pizza2x += 1
+        root.pizza1x = (ProductsInCart[0][1])
+        root.pizza2x = (ProductsInCart[1][1])
+        root.pizza3x = (ProductsInCart[2][1])
+        root.pizza4x = (ProductsInCart[3][1])
+        root.pizza5x = (ProductsInCart[4][1])
+        root.pizza6x = (ProductsInCart[5][1])
+        root.pizza7x = (ProductsInCart[6][1])
+        root.pizza8x = (ProductsInCart[7][1])
+        root.pizza9x = (ProductsInCart[8][1])
+        root.pizza10x = (ProductsInCart[9][1])
+        root.pizza11x = (ProductsInCart[10][1])
+        root.pizza12x = (ProductsInCart[11][1])
 
-    def n_minus2(self, root):
-        if root.pizza2x > 0:
-            root.pizza2x += -1
+        print(ProductsInCart[index])
 
-    def n_plus3(self, root):
-        root.pizza3x += 1
-
-    def n_minus3(self, root):
-        if root.pizza3x > 0:
-            root.pizza3x += -1
-
-    def n_plus4(self, root):
-        root.pizza4x += 1
-
-    def n_minus4(self, root):
-        if root.pizza4x > 0:
-            root.pizza4x += -1
-
-    def n_plus5(self, root):
-        root.pizza5x += 1
-
-    def n_minus5(self, root):
-        if root.pizza5x > 0:
-            root.pizza5x += -1
-
-    def n_plus6(self,root):
-        root.pizza6x +=1
-
-    def n_minus6(self,root):
-        if root.pizza6x > 0:
-            root.pizza6x += -1
-
-    def n_plus7(self, root):
-        root.pizza7x += 1
-
-    def n_minus7(self, root):
-        if root.pizza7x > 0:
-            root.pizza7x += -1
-
-    def n_plus8(self, root):
-        root.pizza8x += 1
-
-    def n_minus8(self, root):
-        if root.pizza8x > 0:
-            root.pizza8x += -1
-
-    def n_plus9(self, root):
-        root.pizza9x += 1
-
-    def n_minus9(self, root):
-        if root.pizza9x > 0:
-            root.pizza9x += -1
-
-    def n_plus10(self, root):
-        root.pizza10x += 1
-
-    def n_minus10(self, root):
-        if root.pizza10x > 0:
-            root.pizza10x += -1
-
-    def n_plus11(self, root):
-        root.pizza11x += 1
-
-    def n_minus11(self, root):
-        if root.pizza11x > 0:
-            root.pizza11x += -1
-
-    def n_plus12(self, root):
-        root.pizza12x += 1
-
-    def n_minus12(self, root):
-        if root.pizza12x > 0:
-            root.pizza12x += -1
-
-    def printstuff(self):
-        pass
 
 
 class DrinkOrdering(Screen):
-    sumDQ = NumericProperty(0)
-    sumDP = NumericProperty(0)
-    drink1x = NumericProperty(0)
-    drink2x = NumericProperty(0)
-    drink3x = NumericProperty(0)
-    drink4x = NumericProperty(0)
-    drink5x = NumericProperty(0)
-    drink6x = NumericProperty(0)
-    drink7x = NumericProperty(0)
-    drink8x = NumericProperty(0)
-    drink9x = NumericProperty(0)
-    drink10x = NumericProperty(0)
-    drink11x = NumericProperty(0)
-    drink12x = NumericProperty(0)
+    drink1x = NumericProperty(ProductsInCart[12][1])
+    drink2x = NumericProperty(ProductsInCart[13][1])
+    drink3x = NumericProperty(ProductsInCart[14][1])
+    drink4x = NumericProperty(ProductsInCart[15][1])
+    drink5x = NumericProperty(ProductsInCart[16][1])
+    drink6x = NumericProperty(ProductsInCart[17][1])
+    drink7x = NumericProperty(ProductsInCart[18][1])
+    drink8x = NumericProperty(ProductsInCart[19][1])
+    drink9x = NumericProperty(ProductsInCart[20][1])
+    drink10x = NumericProperty(ProductsInCart[21][1])
+    drink11x = NumericProperty(ProductsInCart[22][1])
+    drink12x = NumericProperty(ProductsInCart[23][1])
 
-    def sum_drinks(self, root):
-        root.sumDQ = root.drink1x + root.drink2x + root.drink3x + root.drink4x + root.drink5x + root.drink6x + root.drink7x + root.drink8x + root.drink9x + root.drink10x + root.drink11x + root.drink12x
+    def add_product(self, index, root):
+        ProductsInCart[index][1] = ProductsInCart[index][1] + 1
 
-    def sum_drink_price(self, root):
-        root.sumDP = root.drink1x*4.5 + root.drink2x*4.5 + root.drink3x*4.5 + root.drink4x*4.5 + root.drink5x*1.0 + root.drink6x*2.0 + root.drink7x*6.5 + root.drink8x*6.5 + root.drink9x*10.5 + root.drink10x*10.5 + root.drink11x*10.5 + root.drink12x*10.5
+        root.drink1x = (ProductsInCart[12][1])
+        root.drink2x = (ProductsInCart[13][1])
+        root.drink3x = (ProductsInCart[14][1])
+        root.drink4x = (ProductsInCart[15][1])
+        root.drink5x = (ProductsInCart[16][1])
+        root.drink6x = (ProductsInCart[17][1])
+        root.drink7x = (ProductsInCart[18][1])
+        root.drink8x = (ProductsInCart[19][1])
+        root.drink9x = (ProductsInCart[20][1])
+        root.drink10x = (ProductsInCart[21][1])
+        root.drink11x = (ProductsInCart[22][1])
+        root.drink12x = (ProductsInCart[23][1])
 
-    def n_plus1(self,root):
-        root.drink1x +=1
+        print(ProductsInCart[index])
 
-    def n_minus1(self,root):
-        if root.drink1x > 0:
-            root.drink1x += -1
+    def remove_product(self, index, root):
+        if ProductsInCart[index][1] > 0:
+            ProductsInCart[index][1] = ProductsInCart[index][1] - 1
 
-    def n_plus2(self, root):
-        root.drink2x += 1
+        root.drink1x = (ProductsInCart[12][1])
+        root.drink2x = (ProductsInCart[13][1])
+        root.drink3x = (ProductsInCart[14][1])
+        root.drink4x = (ProductsInCart[15][1])
+        root.drink5x = (ProductsInCart[16][1])
+        root.drink6x = (ProductsInCart[17][1])
+        root.drink7x = (ProductsInCart[18][1])
+        root.drink8x = (ProductsInCart[19][1])
+        root.drink9x = (ProductsInCart[20][1])
+        root.drink10x = (ProductsInCart[21][1])
+        root.drink11x = (ProductsInCart[22][1])
+        root.drink12x = (ProductsInCart[23][1])
 
-    def n_minus2(self, root):
-        if root.drink2x > 0:
-            root.drink2x += -1
-
-    def n_plus3(self, root):
-        root.drink3x += 1
-
-    def n_minus3(self, root):
-        if root.drink3x > 0:
-            root.drink3x += -1
-
-    def n_plus4(self, root):
-        root.drink4x += 1
-
-    def n_minus4(self, root):
-        if root.drink4x > 0:
-            root.drink4x += -1
-
-    def n_plus5(self, root):
-        root.drink5x += 1
-
-    def n_minus5(self, root):
-        if root.drink5x > 0:
-            root.drink5x += -1
-
-    def n_plus6(self,root):
-        root.drink6x +=1
-
-    def n_minus6(self,root):
-        if root.drink6x > 0:
-            root.drink6x += -1
-
-    def n_plus7(self, root):
-        root.drink7x += 1
-
-    def n_minus7(self, root):
-        if root.drink7x > 0:
-            root.drink7x += -1
-
-    def n_plus8(self, root):
-        root.drink8x += 1
-
-    def n_minus8(self, root):
-        if root.drink8x > 0:
-            root.drink8x += -1
-
-    def n_plus9(self, root):
-        root.drink9x += 1
-
-    def n_minus9(self, root):
-        if root.drink9x > 0:
-            root.drink9x += -1
-
-    def n_plus10(self, root):
-        root.drink10x += 1
-
-    def n_minus10(self, root):
-        if root.drink10x > 0:
-            root.drink10x += -1
-
-    def n_plus11(self, root):
-        root.drink11x += 1
-
-    def n_minus11(self, root):
-        if root.drink11x > 0:
-            root.drink11x += -1
-
-    def n_plus12(self, root):
-        root.drink12x += 1
-
-    def n_minus12(self, root):
-        if root.drink12x > 0:
-            root.drink12x += -1
-
-    def printstuff(self):
-        pass
+        print(ProductsInCart[index])
 
 
 class CartScreen(Screen):
-    pass
+    def on_enter(self):
+        items = ""
+        amount_ordered = ""
+        item_cost = ""
+        subtotal_cost = ""
+        for i in range(len(ProductsInCart)):
+            if ProductsInCart[i][1] > 0:
+                items += str(ProductsInCart[i][0]) + '\n'
+                amount_ordered += str(ProductsInCart[i][1]) + '\n'
+                item_cost += "$" + str(ProductsInCart[i][2]) + '\n'
+                subtotal_cost += "$" + str(float(ProductsInCart[i][1] * ProductsInCart[i][2])) + '\n'
+                PriceInfo[0] += float(ProductsInCart[i][1] * ProductsInCart[i][2])
+
+        print(PriceInfo)
+        PriceInfo[1] = round(PriceInfo[0] * .1, 2)
+        PriceInfo[2] = round(PriceInfo[0] - PriceInfo[1], 2)
+
+        print(PriceInfo)
+
+        self.ids.itemnames.text = items
+        self.ids.quantity.text = amount_ordered
+        self.ids.item_cost.text = item_cost
+        self.ids.totalitemcost.text = subtotal_cost
+        self.ids.total.text = "GST: $" + str(float(PriceInfo[1])) + "\n" + "\n" + "Product Cost: $" + str(float(PriceInfo[2])) + '\n' + "\n" + "Total: $" + str(float(PriceInfo[0]))
+
+
+class CheckoutScreen(Screen):
+    def print_receipt(self, root):
+        print('1:', PizzaOrdering.pizza1x)
+        print('1:', PizzaOrdering.pizza2x)
+        print('1:', PizzaOrdering.pizza3x)
+        print('1:', PizzaOrdering.pizza4x)
+        print('1:', PizzaOrdering.pizza5x)
+        print('1:', PizzaOrdering.pizza6x)
+
 
 
 class WindowManager(ScreenManager):
@@ -241,6 +168,7 @@ class PapasPizzas(MDApp):
         return Builder.load_file('main.kv')
 
 
+print(PizzaOrdering.pizza1x)
 Window.fullscreen = 'auto'
 PapasPizzas().run()
-
+print(PizzaOrdering.pizza1x)

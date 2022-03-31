@@ -3,6 +3,8 @@ WindowManager:
     PizzaOrdering:
     DrinkOrdering:
     CartScreen:
+    CheckoutScreen:
+    Help:
 
 ######## VARIABLES ########
 #:set elevationV 5
@@ -65,7 +67,7 @@ WindowManager:
 
 ##########################################################################################################
 <HomeScreen@Screen>:
-    name: "first"
+    name: "home"
     BoxLayout:
         orientation: "vertical"
         canvas.before:
@@ -97,7 +99,7 @@ WindowManager:
                 font_size: "30dp"
                 font_name: "OpenSansLight"
                 on_release:
-                    app.root.current = "second"
+                    app.root.current = "pizza"
                     root.manager.transition.direction = "left"
                 background_color: (0,0,0,0)
                 background_normal: ''
@@ -111,7 +113,7 @@ WindowManager:
 
 ##########################################################################################################
 <PizzaOrdering>:
-    name: "second"
+    name: "pizza"
     BoxLayout:
         orientation: "vertical"
         canvas.before:
@@ -128,7 +130,7 @@ WindowManager:
                 font_size: "30dp"
                 font_name: "OpenSansLight"
                 on_release:
-                    app.root.current = "first"
+                    app.root.current = "home"
                     root.manager.transition.direction = "right"
                 background_color: (0,0,0,0)
                 background_normal: ''
@@ -145,47 +147,6 @@ WindowManager:
                 on_release:
                     app.root.current = "drinks"
                     root.manager.transition.direction = "left"
-                    root.sum_pizzas(root)
-                    root.sum_pizza_price(root)
-
-                    root.manager.screens[3].ids.Pizza1.text = str(root.pizza1x)
-                    root.manager.screens[3].ids.Pizza1Price.text = "$" + str(root.pizza1x*PriceforP1)
-
-                    root.manager.screens[3].ids.Pizza2.text = str(root.pizza2x)
-                    root.manager.screens[3].ids.Pizza2Price.text = "$" + str(root.pizza2x*PriceforP2)
-
-                    root.manager.screens[3].ids.Pizza3.text = str(root.pizza3x)
-                    root.manager.screens[3].ids.Pizza3Price.text = "$" + str(root.pizza3x*PriceforP3)
-
-                    root.manager.screens[3].ids.Pizza4.text = str(root.pizza4x)
-                    root.manager.screens[3].ids.Pizza4Price.text = "$" + str(root.pizza4x*PriceforP4)
-
-                    root.manager.screens[3].ids.Pizza5.text = str(root.pizza5x)
-                    root.manager.screens[3].ids.Pizza5Price.text = "$" + str(root.pizza5x*PriceforP5)
-
-                    root.manager.screens[3].ids.Pizza6.text = str(root.pizza6x)
-                    root.manager.screens[3].ids.Pizza6Price.text = "$" + str(root.pizza6x*PriceforP6)
-
-                    root.manager.screens[3].ids.Pizza7.text = str(root.pizza7x)
-                    root.manager.screens[3].ids.Pizza7Price.text = "$" + str(root.pizza7x*PriceforP7)
-
-                    root.manager.screens[3].ids.Pizza8.text = str(root.pizza8x)
-                    root.manager.screens[3].ids.Pizza8Price.text = "$" + str(root.pizza8x*PriceforP8)
-
-                    root.manager.screens[3].ids.Pizza9.text = str(root.pizza9x)
-                    root.manager.screens[3].ids.Pizza9Price.text = "$" + str(root.pizza9x*PriceforP9)
-
-                    root.manager.screens[3].ids.Pizza10.text = str(root.pizza10x)
-                    root.manager.screens[3].ids.Pizza10Price.text = "$" + str(root.pizza10x*PriceforP10)
-
-                    root.manager.screens[3].ids.Pizza11.text = str(root.pizza11x)
-                    root.manager.screens[3].ids.Pizza11Price.text = "$" + str(root.pizza11x*PriceforP11)
-
-                    root.manager.screens[3].ids.Pizza12.text = str(root.pizza12x)
-                    root.manager.screens[3].ids.Pizza12Price.text = "$" + str(root.pizza12x*PriceforP12)
-
-                    root.manager.screens[3].ids.TotalQ.text = str(root.sumPQ)
-                    root.manager.screens[3].ids.TotalP.text = "$" + str(root.sumPP)
 
                 background_color: (0,0,0,0)
                 background_normal: ''
@@ -220,14 +181,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus1(root)
+                                        root.remove_product(0, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.pizza1x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus1(root)
+                                        root.add_product(0, root)
 
 # // Pizza 2
                     PizzaItem:
@@ -242,14 +203,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus2(root)
+                                        root.remove_product(1, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.pizza2x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus2(root)
+                                        root.add_product(1, root)
 
 
 # // Pizza 3
@@ -265,14 +226,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus3(root)
+                                        root.remove_product(2, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.pizza3x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus3(root)
+                                        root.add_product(2, root)
 
 # // Pizza 4
                     PizzaItem:
@@ -287,14 +248,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus4(root)
+                                        root.remove_product(3, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.pizza4x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus4(root)
+                                        root.add_product(3, root)
 
 # // Pizza 5
                     PizzaItem:
@@ -309,14 +270,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus5(root)
+                                        root.remove_product(4, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.pizza5x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus5(root)
+                                        root.add_product(4, root)
 
 # // Pizza 6
                     PizzaItem:
@@ -331,14 +292,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus6(root)
+                                        root.remove_product(5, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.pizza6x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus6(root)
+                                        root.add_product(5, root)
 
 # // Pizza 7
                     PizzaItem:
@@ -353,14 +314,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus7(root)
+                                        root.remove_product(6, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.pizza7x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus7(root)
+                                        root.add_product(6, root)
 
 # // Pizza 8
                     PizzaItem:
@@ -375,14 +336,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus8(root)
+                                        root.remove_product(7, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.pizza8x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus8(root)
+                                        root.add_product(7, root)
 # // Pizza 9
                     PizzaItem:
                         Image:
@@ -396,14 +357,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus9(root)
+                                        root.remove_product(8, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.pizza9x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus9(root)
+                                        root.add_product(8, root)
 
 # // Pizza 10
                     PizzaItem:
@@ -418,14 +379,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus10(root)
+                                        root.remove_product(9, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.pizza10x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus10(root)
+                                        root.add_product(9, root)
 
 # // Pizza 11
                     PizzaItem:
@@ -440,14 +401,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus11(root)
+                                        root.remove_product(10, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.pizza11x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus11(root)
+                                        root.add_product(10, root)
 
 # // Pizza 12
                     PizzaItem:
@@ -462,14 +423,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus12(root)
+                                        root.remove_product(11, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.pizza12x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus12(root)
+                                        root.add_product(11, root)
 
 
         Credits:
@@ -493,7 +454,7 @@ WindowManager:
                 font_size: "30dp"
                 font_name: "OpenSansLight"
                 on_release:
-                    app.root.current = "second"
+                    app.root.current = "pizza"
                     root.manager.transition.direction = "right"
                 background_color: (0,0,0,0)
                 background_normal: ''
@@ -504,55 +465,13 @@ WindowManager:
                 font_name: "OpenSansLight"
 
             Button:
-                text: "Next: Checkout"
+                text: "Next: Cart"
                 color: 1,1,1
                 font_size: "30dp"
                 font_name: "OpenSansLight"
                 on_release:
                     app.root.current = "cart"
                     root.manager.transition.direction = "left"
-                    root.sum_drinks(root)
-                    root.sum_drink_price(root)
-                    root.manager.screens[3].ids.drink1.text = str(root.drink1x)
-                    root.manager.screens[3].ids.drink1Price.text = "$" + str(root.drink1x*PriceforD1)
-
-                    root.manager.screens[3].ids.drink2.text = str(root.drink2x)
-                    root.manager.screens[3].ids.drink2Price.text = "$" + str(root.drink2x*PriceforD2)
-
-                    root.manager.screens[3].ids.drink3.text = str(root.drink3x)
-                    root.manager.screens[3].ids.drink3Price.text = "$" + str(root.drink3x*PriceforD3)
-
-                    root.manager.screens[3].ids.drink4.text = str(root.drink4x)
-                    root.manager.screens[3].ids.drink4Price.text = "$" + str(root.drink4x*PriceforD4)
-
-                    root.manager.screens[3].ids.drink5.text = str(root.drink5x)
-                    root.manager.screens[3].ids.drink5Price.text = "$" + str(root.drink5x*PriceforD5)
-
-                    root.manager.screens[3].ids.drink6.text = str(root.drink6x)
-                    root.manager.screens[3].ids.drink6Price.text = "$" + str(root.drink6x*PriceforD6)
-
-                    root.manager.screens[3].ids.drink7.text = str(root.drink7x)
-                    root.manager.screens[3].ids.drink7Price.text = "$" + str(root.drink7x*PriceforD7)
-
-                    root.manager.screens[3].ids.drink8.text = str(root.drink8x)
-                    root.manager.screens[3].ids.drink8Price.text = "$" + str(root.drink8x*PriceforD8)
-
-                    root.manager.screens[3].ids.drink9.text = str(root.drink9x)
-                    root.manager.screens[3].ids.drink9Price.text = "$" + str(root.drink9x*PriceforD9)
-
-                    root.manager.screens[3].ids.drink10.text = str(root.drink10x)
-                    root.manager.screens[3].ids.drink10Price.text = "$" + str(root.drink10x*PriceforD10)
-
-                    root.manager.screens[3].ids.drink11.text = str(root.drink11x)
-                    root.manager.screens[3].ids.drink11Price.text = "$" + str(root.drink11x*PriceforD11)
-
-                    root.manager.screens[3].ids.drink12.text = str(root.drink12x)
-                    root.manager.screens[3].ids.drink12Price.text = "$" + str(root.drink12x*PriceforD12)
-
-
-
-                    root.manager.screens[3].ids.TotalDQ.text = str(root.sumDQ)
-                    root.manager.screens[3].ids.TotalDP.text = "$" + str(root.sumDP)
 
                 background_color: (0,0,0,0)
                 background_normal: ''
@@ -600,14 +519,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus1(root)
+                                        root.remove_product(12, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.drink1x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus1(root)
+                                        root.add_product(12, root)
 
 # // drink 2
                     drinkItem:
@@ -624,14 +543,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus2(root)
+                                        root.remove_product(13, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.drink2x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus2(root)
+                                        root.add_product(13, root)
 
 
 # // drink 3
@@ -649,14 +568,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus3(root)
+                                        root.remove_product(14, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.drink3x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus3(root)
+                                        root.add_product(14, root)
 
 # // drink 4
                     drinkItem:
@@ -673,14 +592,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus4(root)
+                                        root.remove_product(15, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.drink4x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus4(root)
+                                        root.add_product(15, root)
 
 # // drink 5
                     drinkItem:
@@ -697,14 +616,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus5(root)
+                                        root.remove_product(16, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.drink5x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus5(root)
+                                        root.add_product(16, root)
 
 # // drink 6
                     drinkItem:
@@ -721,14 +640,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus6(root)
+                                        root.remove_product(17, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.drink6x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus6(root)
+                                        root.add_product(17, root)
 
 # // drink 7
                     drinkItem:
@@ -745,14 +664,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus7(root)
+                                        root.remove_product(18, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.drink7x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus7(root)
+                                        root.add_product(18, root)
 
 # // drink 8
                     drinkItem:
@@ -769,14 +688,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus8(root)
+                                        root.remove_product(19, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.drink8x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus8(root)
+                                        root.add_product(19, root)
 # // drink 9
                     drinkItem:
                         Image:
@@ -792,14 +711,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus9(root)
+                                        root.remove_product(20, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.drink9x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus9(root)
+                                        root.add_product(20, root)
 
 # // drink 10
                     drinkItem:
@@ -816,14 +735,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus10(root)
+                                        root.remove_product(21, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.drink10x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus10(root)
+                                        root.add_product(21, root)
 
 # // drink 11
                     drinkItem:
@@ -840,14 +759,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus11(root)
+                                        root.remove_product(22, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.drink11x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus11(root)
+                                        root.add_product(22, root)
 
 # // drink 12
                     drinkItem:
@@ -864,14 +783,14 @@ WindowManager:
                             QuantityChanging:
                                 MinusButton:
                                     on_release:
-                                        root.n_minus12(root)
+                                        root.remove_product(23, root)
                                 QuantityValue:
                                     Label:
                                         color: 0.7,0,0
                                         text: str(root.drink12x)
                                 PlusButton:
                                     on_release:
-                                        root.n_plus12(root)
+                                        root.add_product(23, root)
 
 
         Credits:
@@ -910,433 +829,181 @@ WindowManager:
                 font_size: "30dp"
                 font_name: "OpenSansLight"
                 on_release:
-                    app.root.current = "cart"
-                    root.manager.transition.direction = "right"
+                    app.root.current = "checkout"
+                    root.manager.transition.direction = "left"
                 background_color: (0,0,0,0)
                 background_normal: ''
 #######################################################################################
         BoxLayout:
-            orientation: "horizontal"
+            padding: "10dp"
+            orientation: "vertical"
+            canvas.before:
+                Color:
+                    rgb: 1,1,1
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
             BoxLayout:
-                orientation: "vertical"
-                padding: "50dp"
-                spacing: "20dp"
-                size_hint: .5,1
-                canvas.before:
-                    Color:
-                        rgb: 1,1,1
-                    Rectangle:
-                        size: self.size
-                        pos: self.pos
-    # ------------------------------------------------------------------
+                spacing: "10dp"
+                padding: "10dp"
+                size_hint: 1, .1
                 MDCard:
                     Label:
-                        text: "Pizza Name"
+                        text: "ITEM"
                         color: 0.7,0,0
-                        bold: True
+                        font_name: "OpenSansLight"
+                        font_size: "20dp"
+                MDCard:
                     Label:
-                        text: "Quantity"
+                        text: "QUANTITY"
                         color: 0.7,0,0
-                        bold: True
+                        font_name: "OpenSansLight"
+                        font_size: "20dp"
+                MDCard:
                     Label:
-                        text: "Price"
+                        text: "ITEM COST"
                         color: 0.7,0,0
-                        bold: True
-    # ------------------------------------------------------------------
+                        font_name: "OpenSansLight"
+                        font_size: "20dp"
                 MDCard:
                     Label:
-                        text: NameofP1
-                        color: 0,0,0
-                    Label:
-                        id: Pizza1
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: Pizza1Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    Label:
-                        text: NameofP2
-                        color: 0,0,0
-                    Label:
-                        id: Pizza2
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: Pizza2Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    spacing: "5dp"
-                    Label:
-                        text: NameofP3
-                        color: 0,0,0
-                    Label:
-                        id: Pizza3
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: Pizza3Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    spacing: "5dp"
-                    Label:
-                        text: NameofP4
-                        color: 0,0,0
-                    Label:
-                        id: Pizza4
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: Pizza4Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    spacing: "5dp"
-                    Label:
-                        text: NameofP5
-                        color: 0,0,0
-                    Label:
-                        id: Pizza5
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: Pizza5Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    spacing: "5dp"
-                    Label:
-                        text: NameofP6
-                        color: 0,0,0
-                    Label:
-                        id: Pizza6
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: Pizza6Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    spacing: "5dp"
-                    Label:
-                        text: NameofP7
-                        color: 0,0,0
-                    Label:
-                        id: Pizza7
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: Pizza7Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    spacing: "5dp"
-                    Label:
-                        text: NameofP8
-                        color: 0,0,0
-                    Label:
-                        id: Pizza8
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: Pizza8Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    spacing: "5dp"
-                    Label:
-                        text: NameofP9
-                        color: 0,0,0
-                    Label:
-                        id: Pizza9
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: Pizza9Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    spacing: "5dp"
-                    Label:
-                        text: NameofP10
-                        color: 0,0,0
-                    Label:
-                        id: Pizza10
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: Pizza10Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    spacing: "5dp"
-                    Label:
-                        text: NameofP11
-                        color: 0,0,0
-                    Label:
-                        id: Pizza11
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: Pizza11Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    spacing: "5dp"
-                    Label:
-                        text: NameofP12
-                        color: 0,0,0
-                    Label:
-                        id: Pizza12
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: Pizza12Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    Label:
-                        text: "Total"
+                        text: "SUBTOTAL"
                         color: 0.7,0,0
-                        bold: True
+                        font_name: "OpenSansLight"
+                        font_size: "20dp"
+                MDCard:
                     Label:
-                        id: TotalQ
-                        text: "0"
+                        text: "TOTAL"
                         color: 0.7,0,0
-                        bold: True
-                    Label:
-                        id: TotalP
-                        text: "$0.00"
-                        color: 0.7,0,0
-                        bold: True
-    # ------------------------------------------------------------------
+                        font_name: "OpenSansLight"
+                        font_size: "20dp"
             BoxLayout:
-                orientation: "vertical"
-                padding: "50dp"
-                spacing: "20dp"
-                size_hint: .5,1
-                canvas.before:
-                    Color:
-                        rgb: 1,1,1
-                    Rectangle:
-                        size: self.size
-                        pos: self.pos
-    ############### DRINKS #####################
+                spacing: "10dp"
+                padding: "10dp"
                 MDCard:
                     Label:
-                        text: "Drink Name"
-                        color: 0.7,0,0
-                        bold: True
-                    Label:
-                        text: "Quantity"
-                        color: 0.7,0,0
-                        bold: True
-                    Label:
-                        text: "Price"
-                        color: 0.7,0,0
-                        bold: True
-    # ------------------------------------------------------------------
-                MDCard:
-                    Label:
-                        text: NameofD1
-                        color: 0,0,0
-                    Label:
-                        id: drink1
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: drink1Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    Label:
-                        text: NameofD2
-                        color: 0,0,0
-                    Label:
-                        id: drink2
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: drink2Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    spacing: "5dp"
-                    Label:
-                        text: NameofD3
-                        color: 0,0,0
-                    Label:
-                        id: drink3
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: drink3Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    spacing: "5dp"
-                    Label:
-                        text: NameofD4
-                        color: 0,0,0
-                    Label:
-                        id: drink4
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: drink4Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    spacing: "5dp"
-                    Label:
-                        text: NameofD5
-                        color: 0,0,0
-                    Label:
-                        id: drink5
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: drink5Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    spacing: "5dp"
-                    Label:
-                        text: NameofD6
-                        color: 0,0,0
-                    Label:
-                        id: drink6
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: drink6Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    spacing: "5dp"
-                    Label:
-                        text: NameofD7
-                        color: 0,0,0
-                    Label:
-                        id: drink7
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: drink7Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    spacing: "5dp"
-                    Label:
-                        text: NameofD8
-                        color: 0,0,0
-                    Label:
-                        id: drink8
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: drink8Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    spacing: "5dp"
-                    Label:
-                        text: NameofD9
-                        color: 0,0,0
-                    Label:
-                        id: drink9
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: drink9Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    spacing: "5dp"
-                    Label:
-                        text: NameofD10
-                        color: 0,0,0
-                    Label:
-                        id: drink10
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: drink10Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    spacing: "5dp"
-                    Label:
-                        text: NameofD11
-                        color: 0,0,0
-                    Label:
-                        id: drink11
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: drink11Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    spacing: "5dp"
-                    Label:
-                        text: NameofD12
-                        color: 0,0,0
-                    Label:
-                        id: drink12
-                        text: "0"
-                        color: 0,0,0
-                    Label:
-                        id: drink12Price
-                        text: "$0.00"
-                        color: 0,0,0
-    # ------------------------------------------------------------------
-                MDCard:
-                    size_hint: 1, 1
-                    Label:
-                        text: "Total"
-                        color: 0.7,0,0
-                        bold: True
-                    Label:
-                        id: TotalDQ
+                        id: itemnames
                         text: "0"
                         color: 0.7,0,0
-                        bold: True
+                        font_name: "OpenSansLight"
+                        halign: 'center'
+                MDCard:
                     Label:
-                        id: TotalDP
-                        text: "$0.00"
+                        id: quantity
+                        text: "0"
                         color: 0.7,0,0
-                        bold: True
+                        font_name: "OpenSansLight"
+                        halign: 'center'
+                MDCard:
+                    Label:
+                        id: item_cost
+                        text: "0"
+                        color: 0.7,0,0
+                        font_name: "OpenSansLight"
+                        halign: 'center'
+                MDCard:
+                    Label:
+                        id: totalitemcost
+                        text: "0"
+                        color: 0.7,0,0
+                        font_name: "OpenSansLight"
+                        halign: 'center'
+                MDCard:
+                    Label:
+                        id: total
+                        text: "0"
+                        color: 0.7,0,0
+                        font_name: "OpenSansLight"
+                        halign: 'center'
+
     # ------------------------------------------------------------------
         Credits:
 
 ##########################################################################################################
+<CheckoutScreen>:
+    name: "checkout"
+    BoxLayout:
+        orientation: "vertical"
+        canvas.before:
+            Color:
+                rgb: 0.7,0,0
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        BoxLayout:
+            size_hint: 1, .1
+            Button:
+                text: "Back: Cart"
+                color: 1,1,1
+                font_size: "30dp"
+                font_name: "OpenSansLight"
+                on_release:
+                    app.root.current = "cart"
+                    root.manager.transition.direction = "right"
+                background_color: (0,0,0,0)
+                background_normal: ''
+            Label:
+                text: "Circular Bread"
+                color: 1,1,1
+                font_size: "40dp"
+                font_name: "OpenSansLight"
+            Button:
+                text: " "
+                color: 1,1,1
+                font_size: "30dp"
+                font_name: "OpenSansLight"
+                on_release:
+                    app.root.current = "checkout"
+                    root.manager.transition.direction = "left"
+                background_color: (0,0,0,0)
+                background_normal: ''
+        Button:
+            text: "print receipt"
+            on_release: root.print_receipt(root)
+    Credits:
+##########################################################################################################
+<Help@Screen>:
+    name: "help"
+    BoxLayout:
+        orientation: "vertical"
+        canvas.before:
+            Color:
+                rgb: 0.7,0,0
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        BoxLayout:
+            size_hint: 1, .1
+            Button:
+                text: ""
+                color: 1,1,1
+                font_size: "30dp"
+                font_name: "OpenSansLight"
+                on_release:
+                    app.root.current = "help"
+                    root.manager.transition.direction = "left"
+                background_color: (0,0,0,0)
+                background_normal: ''
+            Label:
+                text: "Circular Bread"
+                color: 1,1,1
+                font_size: "40dp"
+                font_name: "OpenSansLight"
+            Button:
+                text: "Home"
+                color: 1,1,1
+                font_size: "30dp"
+                font_name: "OpenSansLight"
+                on_release:
+                    app.root.current = "home"
+                    root.manager.transition.direction = "left"
+                background_color: (0,0,0,0)
+                background_normal: ''
+        Label:
+            text: "hi"
+    Credits:
+##########################################################################################################
+
 <PizzaItem@MDCard>:
     padding: "20dp"
     spacing: "20dp"
