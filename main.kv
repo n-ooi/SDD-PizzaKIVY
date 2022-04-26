@@ -58,8 +58,8 @@ WindowManager:
 #:set NameofD4 "Fanta"
 #:set NameofD5 "Bottled Water"
 #:set NameofD6 "Lightly Sparkling Water"
-#:set NameofD7 "Drink 7"
-#:set NameofD8 "Drink 8"
+#:set NameofD7 "Ice Coffee"
+#:set NameofD8 "Kombucha"
 #:set NameofD9 "Choccy Shake"
 #:set NameofD10 "Berry Good Shake"
 #:set NameofD11 "Vanilla Shake"
@@ -652,7 +652,7 @@ WindowManager:
 # // drink 7
                     drinkItem:
                         Image:
-                            source: "images/drink.png"
+                            source: "images/drinks/drink7.png"
                         drinkName:
                             text: NameofD7
                         drinkDetails:
@@ -676,7 +676,7 @@ WindowManager:
 # // drink 8
                     drinkItem:
                         Image:
-                            source: "images/drink.png"
+                            source: "images/drinks/drink8.png"
                         drinkName:
                             text: NameofD8
                         drinkDetails:
@@ -853,30 +853,35 @@ WindowManager:
                         color: 0.7,0,0
                         font_name: "OpenSansLight"
                         font_size: "20dp"
+                        bold: True
                 MDCard:
                     Label:
                         text: "QUANTITY"
                         color: 0.7,0,0
                         font_name: "OpenSansLight"
                         font_size: "20dp"
+                        bold: True
                 MDCard:
                     Label:
                         text: "ITEM COST"
                         color: 0.7,0,0
                         font_name: "OpenSansLight"
                         font_size: "20dp"
+                        bold: True
                 MDCard:
                     Label:
                         text: "SUBTOTAL"
                         color: 0.7,0,0
                         font_name: "OpenSansLight"
                         font_size: "20dp"
+                        bold: True
                 MDCard:
                     Label:
                         text: "TOTAL"
                         color: 0.7,0,0
                         font_name: "OpenSansLight"
                         font_size: "20dp"
+                        bold: True
             BoxLayout:
                 spacing: "10dp"
                 padding: "10dp"
@@ -886,7 +891,7 @@ WindowManager:
                         text: "0"
                         color: 0.7,0,0
                         font_name: "OpenSansLight"
-                        halign: 'center'
+
                 MDCard:
                     Label:
                         id: quantity
