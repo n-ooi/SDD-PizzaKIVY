@@ -3,18 +3,20 @@ from kivy.lang import Builder
 from kivy.properties import NumericProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivymd.app import MDApp
-
+import csv
 
 CartItems = [["Vegan Roasted Pineapple", 0, 18.50], ["Tandoori Chicken", 0, 18], ["Chicken 'n' Avo", 0, 19.50],
-                  ["Beef 'n' Shrooms", 0, 20], ["Mary's Little Lamb", 0, 18.5], ["Egg 'n' Bacon", 0, 16],
-                  ["Basic Margherita", 0, 11.50], ["Aloha", 0, 12.50], ["Veges 'n' Veges", 0, 17],
-                  ["Gourmet Pepperoni", 0, 16.50], ["Peri Peri", 0, 18], ["Mystery Meat", 0, 17.00],
+             ["Beef 'n' Shrooms", 0, 20], ["Mary's Little Lamb", 0, 18.5], ["Egg 'n' Bacon", 0, 16],
+             ["Basic Margherita", 0, 11.50], ["Aloha", 0, 12.50], ["Veges 'n' Veges", 0, 17],
+             ["Gourmet Pepperoni", 0, 16.50], ["Peri Peri", 0, 18], ["Mystery Meat", 0, 17.00],
 
-                  ["Sprite", 0, 4.50], ["Coca Cola", 0, 4.50], ["Solo", 0, 4.50],
-                  ["Fanta", 0, 4.50], ["Bottled Water", 0, 1], ["Lightly Sparkling Water", 0, 2],
-                  ["Ice Coffee", 0, 6.50], ["Kombucha", 0, 6.50], ["Choccy Shake", 0, 10.50],
-                  ["Berry Good Shake", 0, 10.50], ["Vanilla Shake", 0, 10.50], ["Caramel Shake", 0, 10.50]]
+             ["Sprite", 0, 4.50], ["Coca Cola", 0, 4.50], ["Solo", 0, 4.50],
+             ["Fanta", 0, 4.50], ["Bottled Water", 0, 1], ["Lightly Sparkling Water", 0, 2],
+             ["Ice Coffee", 0, 6.50], ["Kombucha", 0, 6.50], ["Choccy Shake", 0, 10.50],
+             ["Berry Good Shake", 0, 10.50], ["Vanilla Shake", 0, 10.50], ["Caramel Shake", 0, 10.50]]
 PriceInfo = [0, 0, 0]
+
+
 # [Total Cost, Amount of GST, Cost excluding GST]
 
 class PizzaOrdering(Screen):
@@ -67,7 +69,6 @@ class PizzaOrdering(Screen):
         root.pizza12x = (CartItems[11][1])
 
         print(CartItems[index])
-
 
 
 class DrinkOrdering(Screen):
@@ -124,6 +125,7 @@ class DrinkOrdering(Screen):
 
 class CartScreen(Screen):
     def on_enter(self):
+        PriceInfo = [0, 0, 0]
         items = ""
         amount_ordered = ""
         item_cost = ""
@@ -133,7 +135,8 @@ class CartScreen(Screen):
                 items += str(CartItems[i][0]) + '\n'  # progressively makes a list of all items bought
                 amount_ordered += str(CartItems[i][1]) + '\n'  # progressively makes a list of the quantities
                 item_cost += "$" + str(CartItems[i][2]) + '\n'  # progressively makes a list of the individual costs
-                subtotal_cost += "$" + str(float(CartItems[i][1] * CartItems[i][2])) + '\n'  # progressively makes a list of the total costs of each item
+                subtotal_cost += "$" + str(float(CartItems[i][1] * CartItems[i][
+                    2])) + '\n'  # progressively makes a list of the total costs of each item
                 PriceInfo[0] += float(CartItems[i][1] * CartItems[i][2])
 
         print(PriceInfo)
@@ -146,13 +149,50 @@ class CartScreen(Screen):
         self.ids.quantity.text = amount_ordered
         self.ids.item_cost.text = item_cost
         self.ids.totalitemcost.text = subtotal_cost
-        self.ids.total.text = "GST: $" + str(float(PriceInfo[1])) + "\n" + "\n" + "Product Cost: $" + str(float(PriceInfo[2])) + '\n' + "\n" + "Total: $" + str(float(PriceInfo[0]))
+        self.ids.total.text = "GST: $" + str(float(PriceInfo[1])) + "\n" + "\n" + "Product Cost: $" + str(
+            float(PriceInfo[2])) + '\n' + "\n" + "Total: $" + str(float(PriceInfo[0]))
 
 
 class CheckoutScreen(Screen):
     def print_receipt(self, root):
-        print(CartItems)
+        PriceInfo = [0, 0, 0]
+        items = ""
+        amount_ordered = ""
+        item_cost = ""
+        subtotal_cost = ""
+        for i in range(len(CartItems)):
+            if CartItems[i][1] > 0:  # makes sure that it only displays items bought
+                items += str(CartItems[i][0]) + '\n'  # progressively makes a list of all items bought
+                amount_ordered += str(CartItems[i][1]) + '\n'  # progressively makes a list of the quantities
+                item_cost += "$" + str(CartItems[i][2]) + '\n'  # progressively makes a list of the individual costs
+                subtotal_cost += "$" + str(float(CartItems[i][1] * CartItems[i][
+                    2])) + '\n'  # progressively makes a list of the total costs of each item
+                PriceInfo[0] += float(CartItems[i][1] * CartItems[i][2])
 
+        PriceInfo[1] = round(PriceInfo[0] * .1, 2)  # calculates GST to 2 decimal points
+        PriceInfo[2] = round(PriceInfo[0] - PriceInfo[1], 2)  # calculates total - excluding GST
+
+        print("_______________________________________")
+        print(items.split("\n"))
+        items_list = items.split("\n")
+        print(amount_ordered.split("\n"))
+        amount_ordered_list = amount_ordered.split("\n")
+        print(item_cost.split("\n"))
+        item_cost_list = item_cost.split("\n")
+        print(subtotal_cost.split("\n"))
+        subtotal_cost_list = subtotal_cost.split("\n")
+        print( "GST: $" + str(float(PriceInfo[1])) + "\n" + "\n" + "Product Cost: $" + str(
+            float(PriceInfo[2])) + '\n' + "\n" + "Total: $" + str(float(PriceInfo[0])))
+
+        with open('example_output.csv', 'w') as f:
+            writer = csv.writer(f)
+
+            for i in range(0,len(items_list)):
+                writer.writerow([items_list[i], amount_ordered_list[i],
+                                 item_cost_list[i], subtotal_cost_list[i]])
+
+        with open('example_output.csv') as f:
+            print(f.read().strip())
 
 
 class WindowManager(ScreenManager):
