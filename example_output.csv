@@ -1,3 +1,25 @@
-Tandoori Chicken,56,$18,$1008.0
-Coca Cola,69,$4.5,$310.5
-,,,
+,ItemType,Quantity
+0,pizza1,37
+1,pizza2,2
+2,pizza3,3
+3,pizza4,4
+4,pizza5,5
+5,pizza6,6
+6,pizza7,7
+7,pizza8,8
+8,pizza9,9
+9,pizza10,10
+10,pizza11,11
+11,pizza12,12
+12,drink1,12
+13,drink2,11
+14,drink3,10
+15,drink4,9
+16,drink5,8
+17,drink6,7
+18,drink7,6
+19,drink8,5
+20,drink9,4
+21,drink10,3
+22,drink11,2
+23,drink12,69

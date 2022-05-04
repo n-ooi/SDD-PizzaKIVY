@@ -4,6 +4,7 @@ from kivy.properties import NumericProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivymd.app import MDApp
 import csv
+import pandas as pd
 
 CartItems = [["Vegan Roasted Pineapple", 0, 18.50], ["Tandoori Chicken", 0, 18], ["Chicken 'n' Avo", 0, 19.50],
              ["Beef 'n' Shrooms", 0, 20], ["Mary's Little Lamb", 0, 18.5], ["Egg 'n' Bacon", 0, 16],
@@ -181,19 +182,19 @@ class CheckoutScreen(Screen):
         item_cost_list = item_cost.split("\n")
         print(subtotal_cost.split("\n"))
         subtotal_cost_list = subtotal_cost.split("\n")
-        print( "GST: $" + str(float(PriceInfo[1])) + "\n" + "\n" + "Product Cost: $" + str(
+        print("GST: $" + str(float(PriceInfo[1])) + "\n" + "\n" + "Product Cost: $" + str(
             float(PriceInfo[2])) + '\n' + "\n" + "Total: $" + str(float(PriceInfo[0])))
 
-        with open('example_output.csv', 'w') as f:
-            writer = csv.writer(f)
+        df = pd.read_csv('example_output.csv')
+        df = df[['ItemType', 'Quantity']]
+        importedQuantities = [*df['Quantity']]
+        print(importedQuantities)
+        print(importedQuantities[0])
+        for i in range(0, 24):
+            importedQuantities[i] += CartItems[i][1]
 
-            for i in range(0,len(items_list)):
-                writer.writerow([items_list[i], amount_ordered_list[i],
-                                 item_cost_list[i], subtotal_cost_list[i]])
-
-        with open('example_output.csv') as f:
-            print(f.read().strip())
-
+        df['Quantity'] = importedQuantities
+        df.to_csv('example_output.csv')
 
 class WindowManager(ScreenManager):
     pass
