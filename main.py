@@ -4,7 +4,9 @@ from kivy.properties import NumericProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivymd.app import MDApp
 import csv
+import random
 import pandas as pd
+import datetime
 
 CartItems = [["Vegan Roasted Pineapple", 0, 18.50], ["Tandoori Chicken", 0, 18], ["Chicken 'n' Avo", 0, 19.50],
              ["Beef 'n' Shrooms", 0, 20], ["Mary's Little Lamb", 0, 18.5], ["Egg 'n' Bacon", 0, 16],
@@ -141,7 +143,7 @@ class CartScreen(Screen):
                 PriceInfo[0] += float(CartItems[i][1] * CartItems[i][2])
 
         print(PriceInfo)
-        PriceInfo[1] = round(PriceInfo[0] * .1, 2)  # calculates GST to 2 decimal points
+        PriceInfo[1] = round(PriceInfo[0] * (1 / 11), 2)  # calculates GST to 2 decimal points
         PriceInfo[2] = round(PriceInfo[0] - PriceInfo[1], 2)  # calculates total - excluding GST
 
         print(PriceInfo)
@@ -157,44 +159,44 @@ class CartScreen(Screen):
 class CheckoutScreen(Screen):
     def print_receipt(self, root):
         PriceInfo = [0, 0, 0]
-        items = ""
-        amount_ordered = ""
-        item_cost = ""
-        subtotal_cost = ""
-        for i in range(len(CartItems)):
-            if CartItems[i][1] > 0:  # makes sure that it only displays items bought
-                items += str(CartItems[i][0]) + '\n'  # progressively makes a list of all items bought
-                amount_ordered += str(CartItems[i][1]) + '\n'  # progressively makes a list of the quantities
-                item_cost += "$" + str(CartItems[i][2]) + '\n'  # progressively makes a list of the individual costs
-                subtotal_cost += "$" + str(float(CartItems[i][1] * CartItems[i][
-                    2])) + '\n'  # progressively makes a list of the total costs of each item
-                PriceInfo[0] += float(CartItems[i][1] * CartItems[i][2])
-
-        PriceInfo[1] = round(PriceInfo[0] * .1, 2)  # calculates GST to 2 decimal points
-        PriceInfo[2] = round(PriceInfo[0] - PriceInfo[1], 2)  # calculates total - excluding GST
-
-        print("_______________________________________")
-        print(items.split("\n"))
-        items_list = items.split("\n")
-        print(amount_ordered.split("\n"))
-        amount_ordered_list = amount_ordered.split("\n")
-        print(item_cost.split("\n"))
-        item_cost_list = item_cost.split("\n")
-        print(subtotal_cost.split("\n"))
-        subtotal_cost_list = subtotal_cost.split("\n")
-        print("GST: $" + str(float(PriceInfo[1])) + "\n" + "\n" + "Product Cost: $" + str(
-            float(PriceInfo[2])) + '\n' + "\n" + "Total: $" + str(float(PriceInfo[0])))
-
         df = pd.read_csv('example_output.csv')
         df = df[['ItemType', 'Quantity']]
         importedQuantities = [*df['Quantity']]
-        print(importedQuantities)
-        print(importedQuantities[0])
         for i in range(0, 24):
             importedQuantities[i] += CartItems[i][1]
 
         df['Quantity'] = importedQuantities
         df.to_csv('example_output.csv')
+
+        # Sets the receipt name to the current time (to the second)
+        receiptno = datetime.datetime.now().strftime("%c")
+
+        # Creates a new file in the folder
+        filename = "/Users/nooi23/Desktop/Minor Project/SDDPizzaAssessmentMDv2-master-master/Receipts/" + str(receiptno) + ".txt"
+        f = open(filename, "w+")
+        RContent = "RECEIPT" + ' ' + str(receiptno) + '\n\n'
+
+        # This is what is shown at the top of the receipt for the three colomns
+        RContent += "Product Name       Items In Cart                Cost\n"
+        for i in range(len(CartItems)):
+            if CartItems[i][1] > 0:
+                # This adds on all the information from the cart into the receipt
+                RContent += str(CartItems[i][0]) \
+                            + str("." * (25 - len(CartItems[i][0]))) \
+                            + str(CartItems[i][1]) \
+                            + "." * (25 - len(str(CartItems[i][1]))) \
+                            + str(CartItems[i][2]) + '\n'
+                PriceInfo[0] += float(CartItems[i][1] * CartItems[i][2])
+
+        PriceInfo[1] = round(PriceInfo[0] * (1 / 11), 2)
+        PriceInfo[2] = round(PriceInfo[0] - PriceInfo[1], 2)
+
+        RContent += "\nGST: $" + str(PriceInfo[1]) + "\n" + "Product Cost: $" + str(
+            PriceInfo[2]) + '\n' + "Total: $" + str(int(PriceInfo[0]))
+
+        f.write(RContent)
+        f.close()
+
 
 class WindowManager(ScreenManager):
     pass

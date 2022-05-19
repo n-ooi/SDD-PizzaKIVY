@@ -5,6 +5,7 @@ WindowManager:
     CartScreen:
     CheckoutScreen:
     Help:
+    Thx:
 
 ######## VARIABLES ########
 #:set elevationV 5
@@ -89,7 +90,7 @@ WindowManager:
                 background_color: (0,0,0,0)
                 background_normal: ''
             Label:
-                text: "Circular Bread"
+                text: "Joe's Pizza"
                 color: 1,1,1
                 font_size: "40dp"
                 font_name: "OpenSansLight"
@@ -106,9 +107,13 @@ WindowManager:
         BoxLayout:
             canvas.before:
                 Rectangle:
-                    source: "images/Front.jpg"
+                    # source: "images/Front.jpg"
                     size: self.size
                     pos: self.pos
+            Image:
+                source: 'images/frontpage.gif'
+                size: self.texture_size
+
         Credits:
 
 ##########################################################################################################
@@ -135,7 +140,7 @@ WindowManager:
                 background_color: (0,0,0,0)
                 background_normal: ''
             Label:
-                text: "Circular Bread"
+                text: "Joe's Pizza"
                 color: 1,1,1
                 font_size: "40dp"
                 font_name: "OpenSansLight"
@@ -460,7 +465,7 @@ WindowManager:
                 background_color: (0,0,0,0)
                 background_normal: ''
             Label:
-                text: "Circular Bread"
+                text: "Joe's Pizza"
                 color: 1,1,1
                 font_size: "40dp"
                 font_name: "OpenSansLight"
@@ -821,7 +826,7 @@ WindowManager:
                 background_color: (0,0,0,0)
                 background_normal: ''
             Label:
-                text: "Circular Bread"
+                text: "Joe's Pizza"
                 color: 1,1,1
                 font_size: "40dp"
                 font_name: "OpenSansLight"
@@ -943,7 +948,7 @@ WindowManager:
                 background_color: (0,0,0,0)
                 background_normal: ''
             Label:
-                text: "Circular Bread"
+                text: "Joe's Pizza"
                 color: 1,1,1
                 font_size: "40dp"
                 font_name: "OpenSansLight"
@@ -959,8 +964,16 @@ WindowManager:
                 background_normal: ''
         Button:
             text: "print receipt"
-            on_release: root.print_receipt(root)
+            on_release:
+                root.print_receipt(root)
+                app.root.current = "Thx"
+                root.manager.transition.direction = "up"
     Credits:
+<Thx@Screen>:
+    name: "Thx"
+    Label:
+        text: "Thank you for shopping at Woolworths!"
+        color: 0,0,0
 ##########################################################################################################
 <Help@Screen>:
     name: "help"
@@ -985,7 +998,7 @@ WindowManager:
                 background_color: (0,0,0,0)
                 background_normal: ''
             Label:
-                text: "Circular Bread"
+                text: "Joe's Pizza"
                 color: 1,1,1
                 font_size: "40dp"
                 font_name: "OpenSansLight"

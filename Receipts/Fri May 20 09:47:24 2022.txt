@@ -1,0 +1,8 @@
+RECEIPT Fri May 20 09:47:24 2022
+
+Product Name       Items In Cart                Cost
+Coca Cola................69.......................4.5
+
+GST: $28.23
+Product Cost: $282.27
+Total: $310
