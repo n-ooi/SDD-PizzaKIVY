@@ -953,7 +953,7 @@ WindowManager:
                 font_size: "40dp"
                 font_name: "OpenSansLight"
             Button:
-                text: " "
+                text: ""
                 color: 1,1,1
                 font_size: "30dp"
                 font_name: "OpenSansLight"
@@ -962,12 +962,57 @@ WindowManager:
                     root.manager.transition.direction = "left"
                 background_color: (0,0,0,0)
                 background_normal: ''
-        Button:
-            text: "print receipt"
-            on_release:
-                root.print_receipt(root)
-                app.root.current = "Thx"
-                root.manager.transition.direction = "up"
+        BoxLayout:
+            canvas.before:
+                Color:
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            orientation: "vertical"
+            BoxLayout:
+                orientation: "vertical"
+                padding: "50dp"
+                spacing: "50dp"
+                CCDeets:
+                    MDTextField
+                        id: cc_number
+                        hint_text: "CREDITCARD NUMBER"
+                        max_text_length: 16
+                BoxLayout:
+                    spacing: "50dp"
+                    CCDeets:
+                        MDTextField:
+                            id: cc_expiry
+                            hint_text: "EXPIRY DATE (mm/yy)"
+                    CCDeets:
+                        MDTextField:
+                            id: cc_cvv
+                            hint_text: "CVV"
+                            max_text_length: 3
+                CCDeets:
+                    MDTextField:
+                        id: cc_name
+                        hint_text: "NAME ON CARD"
+            BoxLayout:
+                orientation: "vertical"
+                padding: "50dp",0,"50dp","50dp"
+                size_hint: 1, 0.3
+                CCDeets:
+                    md_bg_color: 0.5,0.5,0.5,1
+
+                    Button:
+                        text: "confirm purchase"
+                        font_size: "20dp"
+                        color: 1,1,1
+                        background_color: (0.7,0,0,0)
+                        background_normal: ''
+                        disabled: True if cc_number.text == '' or cc_name.text == '' or cc_cvv.text == '' or cc_expiry.text == '' else False
+                        on_release:
+                            root.print_receipt(root)
+                            app.root.current = "home"
+                            root.manager.transition.direction = "up"
+                Label:
+                    size_hint: 1, 0.4
     Credits:
 <Thx@Screen>:
     name: "Thx"
@@ -1012,8 +1057,28 @@ WindowManager:
                     root.manager.transition.direction = "left"
                 background_color: (0,0,0,0)
                 background_normal: ''
-        Label:
-            text: "hi"
+
+        Screen:
+            ScrollView:
+                scroll_wheel_distance: 65
+                size: self.size
+                canvas.before:
+                    Color:
+                        # rgb: 0.5,0.8,0.7
+                    Rectangle:
+                        # source: "images/woodbg.jpg"
+                        size: self.size
+                GridLayout:
+                    size_hint_y: None
+                    cols: 3
+                    padding: "80dp"
+                    spacing: "80dp"
+                    height: self.minimum_height
+                    width: self.minimum_width
+
+##########################################################################################################
+# // Pizza 1
+                    PizzaItem:
     Credits:
 ##########################################################################################################
 
@@ -1144,4 +1209,11 @@ WindowManager:
     text_size: self.size
     valign: 'top'
     halign: 'center'
+
+<CCDeets@MDCard>:
+    padding: "20dp"
+    elevation: 20
+    border_radius: 50
+    radius: [50]
+    md_bg_color: 1,1,1,1
 

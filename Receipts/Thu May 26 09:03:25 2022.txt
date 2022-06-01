@@ -1,0 +1,9 @@
+RECEIPT Thu May 26 09:03:25 2022
+
+Product Name       Items In Cart                Cost
+Tandoori Chicken.........100......................18
+Coca Cola................1........................4.5
+
+GST: $164.05
+Product Cost: $1640.45
+Total: $1804

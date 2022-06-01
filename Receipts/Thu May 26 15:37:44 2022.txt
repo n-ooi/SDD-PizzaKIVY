@@ -1,0 +1,10 @@
+RECEIPT Thu May 26 15:37:44 2022
+
+Product Name       Items In Cart                Cost
+Mary's Little Lamb.......1........................18.5
+Mystery Meat.............1........................17.0
+Sprite...................116......................4.5
+
+GST: $50.68
+Product Cost: $506.82
+Total: $557

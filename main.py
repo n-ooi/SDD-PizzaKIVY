@@ -7,6 +7,7 @@ import csv
 import random
 import pandas as pd
 import datetime
+import os
 
 CartItems = [["Vegan Roasted Pineapple", 0, 18.50], ["Tandoori Chicken", 0, 18], ["Chicken 'n' Avo", 0, 19.50],
              ["Beef 'n' Shrooms", 0, 20], ["Mary's Little Lamb", 0, 18.5], ["Egg 'n' Bacon", 0, 16],
@@ -196,6 +197,7 @@ class CheckoutScreen(Screen):
 
         f.write(RContent)
         f.close()
+
 
 
 class WindowManager(ScreenManager):

@@ -1,0 +1,7 @@
+RECEIPT Wed Jun  1 13:53:27 2022
+
+Product Name       Items In Cart                Cost
+
+GST: $0.0
+Product Cost: $0.0
+Total: $0

@@ -1,0 +1,12 @@
+RECEIPT Tue May 31 11:45:26 2022
+
+Product Name       Items In Cart                Cost
+Vegan Roasted Pineapple..1........................18.5
+Tandoori Chicken.........1........................18
+Chicken 'n' Avo..........2........................19.5
+Sprite...................3........................4.5
+Coca Cola................1........................4.5
+
+GST: $8.5
+Product Cost: $85.0
+Total: $93
