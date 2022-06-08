@@ -112,7 +112,6 @@ WindowManager:
                     pos: self.pos
             Image:
                 source: 'images/frontpage.gif'
-                size: self.texture_size
 
         Credits:
 
@@ -977,7 +976,6 @@ WindowManager:
                     MDTextField
                         id: cc_number
                         hint_text: "CREDITCARD NUMBER"
-                        max_text_length: 16
                 BoxLayout:
                     spacing: "50dp"
                     CCDeets:
@@ -988,7 +986,8 @@ WindowManager:
                         MDTextField:
                             id: cc_cvv
                             hint_text: "CVV"
-                            max_text_length: 3
+
+
                 CCDeets:
                     MDTextField:
                         id: cc_name
@@ -1001,12 +1000,13 @@ WindowManager:
                     md_bg_color: 0.5,0.5,0.5,1
 
                     Button:
-                        text: "confirm purchase"
+                        text: "some fields are missing or incorrect" if self.disabled == True else "confirm payment"
                         font_size: "20dp"
                         color: 1,1,1
                         background_color: (0.7,0,0,0)
                         background_normal: ''
-                        disabled: True if cc_number.text == '' or cc_name.text == '' or cc_cvv.text == '' or cc_expiry.text == '' else False
+                        disabled: False if root.validcc(cc_number.text, cc_expiry.text, cc_cvv.text, cc_name.text, root) == True else True
+                        #disabled: True if cc_number.text == '' or cc_name.text == '' or cc_cvv.text == '' or cc_expiry.text == '' else False
                         on_release:
                             root.print_receipt(root)
                             app.root.current = "home"
@@ -1070,15 +1070,28 @@ WindowManager:
                         size: self.size
                 GridLayout:
                     size_hint_y: None
-                    cols: 3
+                    cols: 1
                     padding: "80dp"
                     spacing: "80dp"
                     height: self.minimum_height
                     width: self.minimum_width
 
 ##########################################################################################################
-# // Pizza 1
-                    PizzaItem:
+                    HelpItem:
+                        Image:
+                            source: "images/Help/home.psd"
+                    HelpItem:
+                        Image:
+                            source: "images/Help/pizza.psd"
+                    HelpItem:
+                        Image:
+                            source: "images/Help/drinks.psd"
+                    HelpItem:
+                        Image:
+                            source: "images/Help/cart.psd"
+                    HelpItem:
+                        Image:
+                            source: "images/Help/checkout.psd"
     Credits:
 ##########################################################################################################
 
@@ -1217,3 +1230,13 @@ WindowManager:
     radius: [50]
     md_bg_color: 1,1,1,1
 
+<HelpItem@MDCard>:
+    padding: "20dp"
+    spacing: "20dp"
+    orientation: "vertical"
+    height: "500dp"
+    size_hint: 1,None
+    elevation: 20
+    border_radius: 50
+    radius: [50]
+    md_bg_color: 1,1,1,1

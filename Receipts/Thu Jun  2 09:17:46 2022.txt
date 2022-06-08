@@ -1,0 +1,10 @@
+RECEIPT Thu Jun  2 09:17:46 2022
+
+Product Name       Items In Cart                Cost
+Coca Cola................46.......................4.5
+Solo.....................6........................4.5
+Lightly Sparkling Water..9........................2
+
+GST: $22.91
+Product Cost: $229.09
+Total: $252

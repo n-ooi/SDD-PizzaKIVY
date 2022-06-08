@@ -160,14 +160,14 @@ class CartScreen(Screen):
 class CheckoutScreen(Screen):
     def print_receipt(self, root):
         PriceInfo = [0, 0, 0]
-        df = pd.read_csv('example_output.csv')
+        df = pd.read_csv('database.csv')
         df = df[['ItemType', 'Quantity']]
         importedQuantities = [*df['Quantity']]
         for i in range(0, 24):
             importedQuantities[i] += CartItems[i][1]
 
         df['Quantity'] = importedQuantities
-        df.to_csv('example_output.csv')
+        df.to_csv('database.csv')
 
         # Sets the receipt name to the current time (to the second)
         receiptno = datetime.datetime.now().strftime("%c")
@@ -197,6 +197,13 @@ class CheckoutScreen(Screen):
 
         f.write(RContent)
         f.close()
+
+    def validcc(self, number, expiry, cvv, name, root):
+        if number.replace(' ', '').isdecimal() and 8 <= len(number.replace(' ', '')) <= 19:
+            if expiry.replace('/', '').isdecimal() and len(expiry) == 5:
+                if cvv.isdecimal() and (len(cvv) == 4 or len(cvv) == 3):
+                    if name != '':
+                        return True
 
 
 
