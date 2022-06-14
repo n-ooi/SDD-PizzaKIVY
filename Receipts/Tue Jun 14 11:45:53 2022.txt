@@ -1,0 +1,9 @@
+RECEIPT Tue Jun 14 11:45:53 2022
+
+Product Name       Items In Cart                Cost
+Vegan Roasted Pineapple..14.......................18.5
+Solo.....................10.......................4.5
+
+GST: $27.64
+Product Cost: $276.36
+Total: $304

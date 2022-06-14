@@ -1,0 +1,8 @@
+RECEIPT Tue Jun 14 13:55:25 2022
+
+Product Name       Items In Cart                Cost
+Solo.....................1........................4.5
+
+GST: $0.41
+Product Cost: $4.09
+Total: $4

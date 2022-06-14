@@ -1,0 +1,10 @@
+RECEIPT Tue Jun 14 14:13:21 2022
+
+Product Name       Items In Cart                Cost
+Tandoori Chicken.........7........................18
+Egg 'n' Bacon............7........................16
+Solo.....................4........................4.5
+
+GST: $23.27
+Product Cost: $232.73
+Total: $256

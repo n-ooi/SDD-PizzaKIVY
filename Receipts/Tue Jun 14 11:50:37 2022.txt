@@ -1,0 +1,10 @@
+RECEIPT Tue Jun 14 11:50:37 2022
+
+Product Name       Items In Cart                Cost
+Chicken 'n' Avo..........27.......................19.5
+Sprite...................2........................4.5
+Coca Cola................6........................4.5
+
+GST: $51.14
+Product Cost: $511.36
+Total: $562

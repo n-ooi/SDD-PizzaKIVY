@@ -1,0 +1,10 @@
+RECEIPT Tue Jun 14 14:16:36 2022
+
+Product Name       Items In Cart                Cost
+Tandoori Chicken.........9........................18
+Chicken 'n' Avo..........5........................19.5
+Coca Cola................7........................4.5
+
+GST: $26.45
+Product Cost: $264.55
+Total: $291

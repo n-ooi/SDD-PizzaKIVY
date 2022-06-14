@@ -1,0 +1,8 @@
+RECEIPT Tue Jun 14 14:11:05 2022
+
+Product Name       Items In Cart                Cost
+Chicken 'n' Avo..........19.......................19.5
+
+GST: $33.68
+Product Cost: $336.82
+Total: $370

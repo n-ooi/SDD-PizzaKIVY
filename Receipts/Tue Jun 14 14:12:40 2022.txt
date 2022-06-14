@@ -1,0 +1,8 @@
+RECEIPT Tue Jun 14 14:12:40 2022
+
+Product Name       Items In Cart                Cost
+Tandoori Chicken.........1........................18
+
+GST: $1.64
+Product Cost: $16.36
+Total: $18

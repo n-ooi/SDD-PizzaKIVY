@@ -8,6 +8,7 @@ import random
 import pandas as pd
 import datetime
 import os
+import subprocess
 
 CartItems = [["Vegan Roasted Pineapple", 0, 18.50], ["Tandoori Chicken", 0, 18], ["Chicken 'n' Avo", 0, 19.50],
              ["Beef 'n' Shrooms", 0, 20], ["Mary's Little Lamb", 0, 18.5], ["Egg 'n' Bacon", 0, 16],
@@ -157,7 +158,11 @@ class CartScreen(Screen):
             float(PriceInfo[2])) + '\n' + "\n" + "Total: $" + str(float(PriceInfo[0]))
 
 
+receiptno = [['']]
+
+
 class CheckoutScreen(Screen):
+
     def print_receipt(self, root):
         PriceInfo = [0, 0, 0]
         df = pd.read_csv('database.csv')
@@ -170,12 +175,13 @@ class CheckoutScreen(Screen):
         df.to_csv('database.csv')
 
         # Sets the receipt name to the current time (to the second)
-        receiptno = datetime.datetime.now().strftime("%c")
+        receiptno[0] = datetime.datetime.now().strftime("%c")
 
         # Creates a new file in the folder
-        filename = "/Users/nooi23/Desktop/Minor Project/SDDPizzaAssessmentMDv2-master-master/Receipts/" + str(receiptno) + ".txt"
+        filename = "/Users/nooi23/Desktop/Minor Project/SDDPizzaAssessmentMDv2-master-master/Receipts/" + str(
+            receiptno[0]) + ".txt"
         f = open(filename, "w+")
-        RContent = "RECEIPT" + ' ' + str(receiptno) + '\n\n'
+        RContent = "RECEIPT" + ' ' + str(receiptno[0]) + '\n\n'
 
         # This is what is shown at the top of the receipt for the three colomns
         RContent += "Product Name       Items In Cart                Cost\n"
@@ -204,8 +210,12 @@ class CheckoutScreen(Screen):
                 if cvv.isdecimal() and (len(cvv) == 4 or len(cvv) == 3):
                     if name != '':
                         return True
+        return True ## for testing purposes
 
-
+class Thx(Screen):
+    def open_receipt(self, root):
+        path = "Receipts/" + str(receiptno[0]) + ".txt"
+        subprocess.call(('open', path))
 
 class WindowManager(ScreenManager):
     pass
@@ -214,6 +224,11 @@ class WindowManager(ScreenManager):
 class PapasPizzas(MDApp):
     def build(self):
         return Builder.load_file('main.kv')
+
+    def restart(self):
+        self.root.clear_widgets()
+        self.stop()
+        return PapasPizzas().run()
 
 
 print(PizzaOrdering.pizza1x)

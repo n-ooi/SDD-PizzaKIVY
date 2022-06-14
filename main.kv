@@ -111,7 +111,7 @@ WindowManager:
                     size: self.size
                     pos: self.pos
             Image:
-                source: 'images/frontpage.gif'
+                source: 'images/frontpage.png'
 
         Credits:
 
@@ -1009,16 +1009,42 @@ WindowManager:
                         #disabled: True if cc_number.text == '' or cc_name.text == '' or cc_cvv.text == '' or cc_expiry.text == '' else False
                         on_release:
                             root.print_receipt(root)
-                            app.root.current = "home"
+                            app.root.current = "Thx"
                             root.manager.transition.direction = "up"
                 Label:
                     size_hint: 1, 0.4
     Credits:
 <Thx@Screen>:
     name: "Thx"
-    Label:
-        text: "Thank you for shopping at Woolworths!"
-        color: 0,0,0
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "Order Complete!"
+            font_size: "30dp"
+            color: 0.7,0,0
+        BoxLayout:
+            size_hint: 1,.5
+            spacing: "40dp"
+            padding: "40dp"
+            Button:
+                text: "Open Receipt"
+                font_size: "20dp"
+                on_release:
+                    root.open_receipt(root)
+            #Button:  ## NOT CURRENTLY WORKING ##
+             #   text: "Start New Order"
+              #  font_size: "20dp"
+               # on_release:
+                #    app.restart()
+                 #   app.root.current = "home"
+                  #  root.manager.transition.direction = "up"
+
+            Button:
+                text: "Close Program"
+                font_size: "20dp"
+                on_release:
+                    root.stop(root)
+
 ##########################################################################################################
 <Help@Screen>:
     name: "help"
@@ -1078,18 +1104,43 @@ WindowManager:
 
 ##########################################################################################################
                     HelpItem:
+                        Label:
+                            size_hint: 1,.1
+                            text: "Home Page"
+                            font_size: "30dp"
+                            color: 0.7,0,0
                         Image:
                             source: "images/Help/home.psd"
                     HelpItem:
+                        Label:
+                            size_hint: 1,.1
+                            text: "Pizza Page"
+                            font_size: "30dp"
+                            color: 0.7,0,0
                         Image:
                             source: "images/Help/pizza.psd"
                     HelpItem:
+                        Label:
+                            size_hint: 1,.1
+                            text: "Drinks Page"
+                            font_size: "30dp"
+                            color: 0.7,0,0
                         Image:
                             source: "images/Help/drinks.psd"
                     HelpItem:
+                        Label:
+                            size_hint: 1,.1
+                            text: "Cart Page"
+                            font_size: "30dp"
+                            color: 0.7,0,0
                         Image:
                             source: "images/Help/cart.psd"
                     HelpItem:
+                        Label:
+                            size_hint: 1,.1
+                            text: "Checkout Page"
+                            font_size: "30dp"
+                            color: 0.7,0,0
                         Image:
                             source: "images/Help/checkout.psd"
     Credits:

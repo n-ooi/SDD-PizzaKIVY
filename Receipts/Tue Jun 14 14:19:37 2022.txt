@@ -1,0 +1,9 @@
+RECEIPT Tue Jun 14 14:19:37 2022
+
+Product Name       Items In Cart                Cost
+Mary's Little Lamb.......20.......................18.5
+Coca Cola................6........................4.5
+
+GST: $36.09
+Product Cost: $360.91
+Total: $397
