@@ -9,7 +9,11 @@ import pandas as pd
 import datetime
 import os
 import subprocess
+# All my imports are listed above
 
+# An array of arrays storing the data for:
+# the name of every item, the quantity ordered as well as the price of the item
+# For Example: ["Name", Quantity, Price]
 CartItems = [["Vegan Roasted Pineapple", 0, 18.50], ["Tandoori Chicken", 0, 18], ["Chicken 'n' Avo", 0, 19.50],
              ["Beef 'n' Shrooms", 0, 20], ["Mary's Little Lamb", 0, 18.5], ["Egg 'n' Bacon", 0, 16],
              ["Basic Margherita", 0, 11.50], ["Aloha", 0, 12.50], ["Veges 'n' Veges", 0, 17],
@@ -19,12 +23,12 @@ CartItems = [["Vegan Roasted Pineapple", 0, 18.50], ["Tandoori Chicken", 0, 18],
              ["Fanta", 0, 4.50], ["Bottled Water", 0, 1], ["Lightly Sparkling Water", 0, 2],
              ["Ice Coffee", 0, 6.50], ["Kombucha", 0, 6.50], ["Choccy Shake", 0, 10.50],
              ["Berry Good Shake", 0, 10.50], ["Vanilla Shake", 0, 10.50], ["Caramel Shake", 0, 10.50]]
-PriceInfo = [0, 0, 0]
 
+PriceInfo = [0, 0, 0] # [Total Cost, Amount of GST, Cost excluding GST]
 
-# [Total Cost, Amount of GST, Cost excluding GST]
 
 class PizzaOrdering(Screen):
+    # These values set the number visible on the item to the quantity of that item in the cart
     pizza1x = NumericProperty(CartItems[0][1])
     pizza2x = NumericProperty(CartItems[1][1])
     pizza3x = NumericProperty(CartItems[2][1])
@@ -40,7 +44,9 @@ class PizzaOrdering(Screen):
 
     def add_product(self, index, root):
         CartItems[index][1] = CartItems[index][1] + 1
+        # when this button is pressed it increments the quantity ordered
 
+        # this updates all the values
         root.pizza1x = (CartItems[0][1])
         root.pizza2x = (CartItems[1][1])
         root.pizza3x = (CartItems[2][1])
@@ -53,13 +59,12 @@ class PizzaOrdering(Screen):
         root.pizza10x = (CartItems[9][1])
         root.pizza11x = (CartItems[10][1])
         root.pizza12x = (CartItems[11][1])
-
-        print(CartItems[index])
 
     def remove_product(self, index, root):
-        if CartItems[index][1] > 0:
+        if CartItems[index][1] > 0: # As long as the amount is >0 this button will decrement the quantity
             CartItems[index][1] = CartItems[index][1] - 1
 
+        # this updates all the values
         root.pizza1x = (CartItems[0][1])
         root.pizza2x = (CartItems[1][1])
         root.pizza3x = (CartItems[2][1])
@@ -73,10 +78,8 @@ class PizzaOrdering(Screen):
         root.pizza11x = (CartItems[10][1])
         root.pizza12x = (CartItems[11][1])
 
-        print(CartItems[index])
-
-
 class DrinkOrdering(Screen):
+    # These values set the number visible on the item to the quantity of that item in the cart
     drink1x = NumericProperty(CartItems[12][1])
     drink2x = NumericProperty(CartItems[13][1])
     drink3x = NumericProperty(CartItems[14][1])
@@ -92,7 +95,9 @@ class DrinkOrdering(Screen):
 
     def add_product(self, index, root):
         CartItems[index][1] = CartItems[index][1] + 1
+        # when this button is pressed it increments the quantity ordered
 
+        # this updates all the values
         root.drink1x = (CartItems[12][1])
         root.drink2x = (CartItems[13][1])
         root.drink3x = (CartItems[14][1])
@@ -105,13 +110,12 @@ class DrinkOrdering(Screen):
         root.drink10x = (CartItems[21][1])
         root.drink11x = (CartItems[22][1])
         root.drink12x = (CartItems[23][1])
-
-        print(CartItems[index])
 
     def remove_product(self, index, root):
-        if CartItems[index][1] > 0:
+        if CartItems[index][1] > 0:  # As long as the amount is >0 this button will decrement the quantity
             CartItems[index][1] = CartItems[index][1] - 1
 
+        # this updates all the values
         root.drink1x = (CartItems[12][1])
         root.drink2x = (CartItems[13][1])
         root.drink3x = (CartItems[14][1])
@@ -124,14 +128,11 @@ class DrinkOrdering(Screen):
         root.drink10x = (CartItems[21][1])
         root.drink11x = (CartItems[22][1])
         root.drink12x = (CartItems[23][1])
-
-        print(CartItems[index])
-
 
 class CartScreen(Screen):
     def on_enter(self):
-        PriceInfo = [0, 0, 0]
-        items = ""
+        PriceInfo = [0, 0, 0]  # resets the value of PriceInfo to prepare for calculations
+        items = "" # sets all values to nothing so that they start off empty
         amount_ordered = ""
         item_cost = ""
         subtotal_cost = ""
@@ -144,12 +145,10 @@ class CartScreen(Screen):
                     2])) + '\n'  # progressively makes a list of the total costs of each item
                 PriceInfo[0] += float(CartItems[i][1] * CartItems[i][2])
 
-        print(PriceInfo)
         PriceInfo[1] = round(PriceInfo[0] * (1 / 11), 2)  # calculates GST to 2 decimal points
         PriceInfo[2] = round(PriceInfo[0] - PriceInfo[1], 2)  # calculates total - excluding GST
 
-        print(PriceInfo)
-
+        # sets all the labels on the GUI to the values calculated
         self.ids.itemnames.text = items
         self.ids.quantity.text = amount_ordered
         self.ids.item_cost.text = item_cost
@@ -158,21 +157,21 @@ class CartScreen(Screen):
             float(PriceInfo[2])) + '\n' + "\n" + "Total: $" + str(float(PriceInfo[0]))
 
 
-receiptno = [['']]
+receiptno = [['']]  # sets a global variable for receiptno
 
 
 class CheckoutScreen(Screen):
 
     def print_receipt(self, root):
-        PriceInfo = [0, 0, 0]
-        df = pd.read_csv('database.csv')
-        df = df[['ItemType', 'Quantity']]
-        importedQuantities = [*df['Quantity']]
-        for i in range(0, 24):
+        PriceInfo = [0, 0, 0] # resets PriceInfo for calculations
+        df = pd.read_csv('database.csv')  # using the 'Pandas' library begins reading the csv file
+        df = df[['ItemType', 'Quantity']]  # finds the two columns named 'ItemType' and 'Quantity'
+        importedQuantities = [*df['Quantity']]  # creates an array of all the quantities listed in the csv file
+        for i in range(0, 24):  # for every value in the array increments it by the amount ordered in the cart
             importedQuantities[i] += CartItems[i][1]
 
-        df['Quantity'] = importedQuantities
-        df.to_csv('database.csv')
+        df['Quantity'] = importedQuantities  # updates the column in the database to new values
+        df.to_csv('database.csv')  # updates the csv file
 
         # Sets the receipt name to the current time (to the second)
         receiptno[0] = datetime.datetime.now().strftime("%c")
@@ -183,55 +182,73 @@ class CheckoutScreen(Screen):
         f = open(filename, "w+")
         RContent = "RECEIPT" + ' ' + str(receiptno[0]) + '\n\n'
 
-        # This is what is shown at the top of the receipt for the three colomns
-        RContent += "Product Name       Items In Cart                Cost\n"
+        # Displays the first row of the table
+        RContent += "+-------------------------+---------------+----------+----------+\n" \
+                    "|      Product Name       |    Quantity   |   Cost   | Subtotal | \n" \
+                    "+-------------------------+---------------+----------+----------+"
         for i in range(len(CartItems)):
             if CartItems[i][1] > 0:
-                # This adds on all the information from the cart into the receipt
-                RContent += str(CartItems[i][0]) \
-                            + str("." * (25 - len(CartItems[i][0]))) \
-                            + str(CartItems[i][1]) \
-                            + "." * (25 - len(str(CartItems[i][1]))) \
-                            + str(CartItems[i][2]) + '\n'
+                # This adds each of the pricing info for each item with formatting to line up with the table
+                RContent += "\n| " + str(CartItems[i][0]) \
+                            + str(" " * (24 - len(CartItems[i][0]))) \
+                            + "|       " + str(CartItems[i][1]) \
+                            + " " * (8 - len(str(CartItems[i][1]))) \
+                            + "|   $" + str(CartItems[i][2]) \
+                            + " " * (6 - len(str( CartItems[i][2]))) \
+                            + "|  $" + str(CartItems[i][2]*CartItems[i][1]) \
+                            + " " * (7 - len(str(CartItems[i][2]*CartItems[i][1]))) \
+                            + "|"
+
                 PriceInfo[0] += float(CartItems[i][1] * CartItems[i][2])
+        # This adds the bottom of the table
+        RContent += "\n+-------------------------+---------------+----------+----------+"
 
-        PriceInfo[1] = round(PriceInfo[0] * (1 / 11), 2)
-        PriceInfo[2] = round(PriceInfo[0] - PriceInfo[1], 2)
+        PriceInfo[1] = round(PriceInfo[0] * (1 / 11), 2)  # calculates GST
+        PriceInfo[2] = round(PriceInfo[0] - PriceInfo[1], 2)  # calculates Product Cost
 
+        # adds pricing info at the bottom of the receipt
         RContent += "\nGST: $" + str(PriceInfo[1]) + "\n" + "Product Cost: $" + str(
             PriceInfo[2]) + '\n' + "Total: $" + str(int(PriceInfo[0]))
 
         f.write(RContent)
-        f.close()
+        f.close()  # closes the file
 
     def validcc(self, number, expiry, cvv, name, root):
+        # checks if the credit card number is a integer and between 8 and 19 characters
         if number.replace(' ', '').isdecimal() and 8 <= len(number.replace(' ', '')) <= 19:
+            # checks if the date is a valid date in correct format
             if expiry.replace('/', '').isdecimal() and len(expiry) == 5:
+                # checks if the cvv is an integer and either 3 or 4 characters
                 if cvv.isdecimal() and (len(cvv) == 4 or len(cvv) == 3):
-                    if name != '':
+                    # checks if a name has been entered
+                    if name:
+                        # if all conditions are met returns True enabling the button
                         return True
-        return True ## for testing purposes
+        # return True ## for testing purposes
+
 
 class Thx(Screen):
     def open_receipt(self, root):
-        path = "Receipts/" + str(receiptno[0]) + ".txt"
-        subprocess.call(('open', path))
+        path = "Receipts/" + str(receiptno[0]) + ".txt"  # creates a variable for the location of the receipt
+        subprocess.call(('open', path))  # opens the receipt
 
-class WindowManager(ScreenManager):
+
+class WindowManager(ScreenManager): # this class defines the ScreenManager
     pass
 
 
 class PapasPizzas(MDApp):
-    def build(self):
+    def build(self):  # Opening the App
         return Builder.load_file('main.kv')
 
-    def restart(self):
+    def restart(self):  # Restarting the App
         self.root.clear_widgets()
         self.stop()
         return PapasPizzas().run()
 
+    def stop(self):  # Closing the App
+        self.stop()
 
-print(PizzaOrdering.pizza1x)
-Window.fullscreen = 'auto'
-PapasPizzas().run()
-print(PizzaOrdering.pizza1x)
+
+Window.fullscreen = 'auto'  # Sets the app's default state to fullscreen
+PapasPizzas().run()  # Opens the app

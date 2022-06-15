@@ -1,0 +1,17 @@
+RECEIPT Wed Jun 15 13:43:39 2022
+
+Product Name       Items In Cart                Cost            Subtotal
+Vegan Roasted Pineapple  4                        18.5                     74.0
+Tandoori Chicken         7                        18                      126
+Chicken 'n' Avo          6                        19.5                    117.0
+Beef 'n' Shrooms         6                        20                      120
+Mary's Little Lamb       5                        18.5                     92.5
+Egg 'n' Bacon            3                        16                       48
+Basic Margherita         7                        11.5                     80.5
+Aloha                    6                        12.5                     75.0
+Veges 'n' Veges          6                        17                      102
+Coca Cola                11                       4.5                     49.5
+
+GST: $80.41
+Product Cost: $804.09
+Total: $884

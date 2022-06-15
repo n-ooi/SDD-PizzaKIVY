@@ -1,0 +1,23 @@
+RECEIPT Wed Jun 15 14:05:05 2022
+
+_________________________________________________________________
+|      Product Name       | Items In Cart |   Cost   | Subtotal | 
++-------------------------+---------------+----------+----------+
+| Vegan Roasted Pineapple |       1       |   18.5   |  18.5    |
+| Tandoori Chicken        |       1       |   18     |  18      |
+| Chicken 'n' Avo         |       101     |   19.5   |  1969.5  |
+| Beef 'n' Shrooms        |       1       |   20     |  20      |
+| Mary's Little Lamb      |       1       |   18.5   |  18.5    |
+| Basic Margherita        |       1       |   11.5   |  11.5    |
+| Aloha                   |       1       |   12.5   |  12.5    |
+| Veges 'n' Veges         |       1       |   17     |  17      |
+| Sprite                  |       1       |   4.5    |  4.5     |
+| Coca Cola               |       1       |   4.5    |  4.5     |
+| Solo                    |       1       |   4.5    |  4.5     |
++-------------------------+---------------+----------+----------+
+GST: $190.82
+Product Cost: $1908.18
+Total: $2099
+
+
+

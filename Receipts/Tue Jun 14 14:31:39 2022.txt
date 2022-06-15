@@ -1,0 +1,9 @@
+RECEIPT Tue Jun 14 14:31:39 2022
+
+Product Name       Items In Cart                Cost
+Mary's Little Lamb.......21.......................18.5
+Aloha....................19.......................12.5
+
+GST: $56.91
+Product Cost: $569.09
+Total: $626

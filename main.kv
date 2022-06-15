@@ -156,7 +156,8 @@ WindowManager:
                 background_normal: ''
         Screen:
             ScrollView:
-                scroll_wheel_distance: 65
+                scroll_wheel_distance: 100
+                effect_cls: 'DampedScrollEffect'
                 size: self.size
                 canvas.before:
                     Color:
@@ -484,7 +485,8 @@ WindowManager:
         Screen:
             ScrollView:
                 size: self.size
-                scroll_wheel_distance: 65
+                scroll_wheel_distance: 100
+                effect_cls: 'DampedScrollEffect'
                 canvas.before:
                     Color:
                         # rgb: 0.5,0.8,0.7
@@ -1086,7 +1088,8 @@ WindowManager:
 
         Screen:
             ScrollView:
-                scroll_wheel_distance: 65
+                scroll_wheel_distance: 100
+                effect_cls: 'DampedScrollEffect'
                 size: self.size
                 canvas.before:
                     Color:
