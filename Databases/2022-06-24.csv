@@ -1,7 +1,7 @@
 ,ItemType,Quantity
-0,Vegan Roasted Pineapple,6
-1,Tandoori Chicken,6
-2,Chicken 'n' Avo,6
+0,Vegan Roasted Pineapple,16
+1,Tandoori Chicken,34
+2,Chicken 'n' Avo,20
 3,Beef 'n' Shrooms,0
 4,Mary's Little Lamb,0
 5,Egg 'n' Bacon,0
@@ -11,9 +11,9 @@
 9,Gourmet Pepperoni,0
 10,Peri Peri,0
 11,Mystery Meat,0
-12,Sprite,0
-13,Coca Cola,0
-14,Solo,0
+12,Sprite,20
+13,Coca Cola,20
+14,Solo,6
 15,Fanta,0
 16,Bottled Water,0
 17,Lightly Sparkling Water,0

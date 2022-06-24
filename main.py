@@ -7,7 +7,7 @@ import csv
 import random
 import pandas as pd
 import datetime
-import os
+from pathlib import Path
 import subprocess
 # All my imports are listed above
 
@@ -163,15 +163,50 @@ receiptno = [['']]  # sets a global variable for receiptno
 class CheckoutScreen(Screen):
 
     def print_receipt(self, root):
+        dbpath = 'Databases/' + str(datetime.datetime.now())[0:10] + '.csv'
+        if Path(dbpath).is_file():
+            print('File Exists')
+        else:
+            print('Creating New Database')
+            dbpath = "/Users/nooi23/Desktop/Minor Project/SDDPizzaAssessmentMDv2-master-master/Databases/" + str(datetime.datetime.now())[0:10] + ".csv"
+            ff = open(dbpath, "w+")
+            ff.write(""",ItemType,Quantity
+0,Vegan Roasted Pineapple,0
+1,Tandoori Chicken,0
+2,Chicken 'n' Avo,0
+3,Beef 'n' Shrooms,0
+4,Mary's Little Lamb,0
+5,Egg 'n' Bacon,0
+6,Basic Margherita,0
+7,Aloha,0
+8,Veges 'n' Veges,0
+9,Gourmet Pepperoni,0
+10,Peri Peri,0
+11,Mystery Meat,0
+12,Sprite,0
+13,Coca Cola,0
+14,Solo,0
+15,Fanta,0
+16,Bottled Water,0
+17,Lightly Sparkling Water,0
+18,Ice Coffee,0
+19,Kombucha,0
+20,Choccy Shake,0
+21,Berry Good Shake,0
+22,Vanilla Shake,0
+23,Caramel Shake,0""")
+
+            ff.close()
+
         PriceInfo = [0, 0, 0] # resets PriceInfo for calculations
-        df = pd.read_csv('database.csv')  # using the 'Pandas' library begins reading the csv file
+        df = pd.read_csv(dbpath) # using the 'Pandas' library begins reading the csv file
         df = df[['ItemType', 'Quantity']]  # finds the two columns named 'ItemType' and 'Quantity'
         importedQuantities = [*df['Quantity']]  # creates an array of all the quantities listed in the csv file
         for i in range(0, 24):  # for every value in the array increments it by the amount ordered in the cart
             importedQuantities[i] += CartItems[i][1]
 
         df['Quantity'] = importedQuantities  # updates the column in the database to new values
-        df.to_csv('database.csv')  # updates the csv file
+        df.to_csv(dbpath)  # updates the csv file
 
         # Sets the receipt name to the current time (to the second)
         receiptno[0] = datetime.datetime.now().strftime("%c")
@@ -229,8 +264,12 @@ class CheckoutScreen(Screen):
 
 class Thx(Screen):
     def open_receipt(self, root):
-        path = "Receipts/" + str(receiptno[0]) + ".txt"  # creates a variable for the location of the receipt
-        subprocess.call(('open', path))  # opens the receipt
+        rpath = "Receipts/" + str(receiptno[0]) + ".txt"  # creates a variable for the location of the receipt
+        subprocess.call(('open', rpath))  # opens the receipt
+
+    def open_db(self, root):
+        dbpath = 'Databases/' + str(datetime.datetime.now())[0:10]+ '.csv'
+        subprocess.call(('open', dbpath))  # opens the database
 
 
 class WindowManager(ScreenManager): # this class defines the ScreenManager

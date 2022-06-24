@@ -1,0 +1,92 @@
+Test:
+    BoxLayout:
+        orientation: "vertical"
+        Button:
+            size_hint: 1, 0.2
+            text: "placeholder"
+        Screen:
+            ScrollView:
+                size: self.size
+                GridLayout:
+                    size_hint_y: None
+                    cols: 3
+                    padding: "80dp"
+                    spacing: "80dp"
+                    height: self.minimum_height
+                    width: self.minimum_width
+                    canvas.before:
+                        Color:
+                            rgb: 1,1,1
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    BoxLayout:
+                        height: "500dp"
+                        size_hint: 1, None
+                        canvas.before:
+                            Color:
+                                rgb: 0.8,0,0
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            text: "R"
+
+                    BoxLayout:
+                        height: "500dp"
+                        size_hint: 1, None
+                        canvas.before:
+                            Color:
+                                rgb: .8,.5,.2
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            text: "Y"
+                    BoxLayout:
+                        height: "500dp"
+                        size_hint: 1, None
+                        canvas.before:
+                            Color:
+                                rgb: .4,.5,.2
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            text: "G"
+                    BoxLayout:
+                        height: "500dp"
+                        size_hint: 1, None
+                        canvas.before:
+                            Color:
+                                rgb: .2,.4,1
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            text: "B"
+                    BoxLayout:
+                        height: "500dp"
+                        size_hint: 1, None
+                        canvas.before:
+                            Color:
+                                rgb: .5,.2,.68
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            text: "P"
+                    BoxLayout:
+                        height: "500dp"
+                        size_hint: 1, None
+                        canvas.before:
+                            Color:
+                                rgb: .8,.3,.8
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            text: ""
+        Button:
+            size_hint: 1,0.2
+            text: "sjsakajsdkjdaskdjlkdsjlkdsjlksdjkajdsljdsakajdskljsl"
