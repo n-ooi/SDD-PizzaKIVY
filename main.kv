@@ -1039,10 +1039,14 @@ WindowManager:
                 on_release:
                     root.open_db(root)
             Button:
-                text: "Close Program"
+                text: "Restart Program"
                 font_size: "20dp"
                 on_release:
-                    root.stop(root)
+                    app.root.current = "home"
+                    root.manager.transition.direction = "right"
+                    app.restart()
+
+
 
 ##########################################################################################################
 <Help@Screen>:
@@ -1084,7 +1088,7 @@ WindowManager:
                 background_normal: ''
 
         Screen:
-            ScrollView:
+            ScrollView: # Allows for smooth scrolling
                 scroll_wheel_distance: 100
                 effect_cls: 'DampedScrollEffect'
                 size: self.size
