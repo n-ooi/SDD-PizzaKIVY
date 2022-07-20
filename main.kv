@@ -1013,6 +1013,10 @@ WindowManager:
                             root.print_receipt(root)
                             app.root.current = "Thx"
                             root.manager.transition.direction = "up"
+                            cc_number.text = ""
+                            cc_expiry.text = ""
+                            cc_cvv.text = ""
+                            cc_name.text = ""
                 Label:
                     size_hint: 1, 0.4
     Credits:
@@ -1033,7 +1037,7 @@ WindowManager:
                 font_size: "20dp"
                 on_release:
                     root.open_receipt(root)
-            Button:  ## NOT CURRENTLY WORKING ##
+            Button:
                 text: "Open Today's Database"
                 font_size: "20dp"
                 on_release:
@@ -1147,6 +1151,14 @@ WindowManager:
                             color: 0.69,0,0
                         Image:
                             source: "images/Help/checkout.psd"
+                    HelpItem:
+                        Label:
+                            size_hint: 1,.1
+                            text: "Confirmation Page"
+                            font_size: "30dp"
+                            color: 0.69,0,0
+                        Image:
+                            source: "images/Help/thx.psd"
     Credits:
 ##########################################################################################################
 

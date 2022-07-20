@@ -1,15 +1,16 @@
-from tabulate import tabulate
+from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.properties import NumericProperty
+from kivymd.uix.button import MDFlatButton
+from kivymd.uix.dialog import MDDialog
 from kivy.core.window import Window
 from kivy.lang import Builder
-from kivy.properties import NumericProperty
-from kivy.uix.screenmanager import ScreenManager, Screen
 from kivymd.app import MDApp
-from kivymd.uix.dialog import MDDialog
-from kivymd.uix.button import MDFlatButton
-import pandas as pd
-import datetime
+
+from tabulate import tabulate
 from pathlib import Path
+import pandas as pd
 import subprocess
+import datetime
 import sys
 
 # All my imports are listed above
@@ -17,17 +18,32 @@ import sys
 # An array of arrays storing the data for:
 # the name of every item, the quantity ordered as well as the price of the item
 # Structure: ["Name", Quantity, Price]
-items_ordered = [["Vegan Roasted Pineapple", 0, 18.50], ["Tandoori Chicken", 0, 18], ["Chicken 'n' Avo", 0, 19.50],
-                 ["Beef 'n' Shrooms", 0, 20], ["Mary's Little Lamb", 0, 18.5], ["Egg 'n' Bacon", 0, 16],
-                 ["Basic Margherita", 0, 11.50], ["Aloha", 0, 12.50], ["Veges 'n' Veges", 0, 17],
-                 ["Gourmet Pepperoni", 0, 16.50], ["Peri Peri", 0, 18], ["Mystery Meat", 0, 17.00],
 
-                 ["Sprite", 0, 4.50], ["Coca Cola", 0, 4.50], ["Solo", 0, 4.50],
-                 ["Fanta", 0, 4.50], ["Bottled Water", 0, 1], ["Lightly Sparkling Water", 0, 2],
-                 ["Ice Coffee", 0, 6.50], ["Kombucha", 0, 6.50], ["Choccy Shake", 0, 10.50],
-                 ["Berry Good Shake", 0, 10.50], ["Vanilla Shake", 0, 10.50], ["Caramel Shake", 0, 10.50]]
-print(sys.getsizeof(items_ordered))
+items_ordered = [["Vegan Roasted Pineapple", 0, 18.50],
+                 ["Tandoori Chicken", 0, 18],
+                 ["Chicken 'n' Avo", 0, 19.50],
+                 ["Beef 'n' Shrooms", 0, 20],
+                 ["Mary's Little Lamb", 0, 18.5],
+                 ["Egg 'n' Bacon", 0, 16],
+                 ["Basic Margherita", 0, 11.50],
+                 ["Aloha", 0, 12.50],
+                 ["Veges 'n' Veges", 0, 17],
+                 ["Gourmet Pepperoni", 0, 16.50],
+                 ["Peri Peri", 0, 18],
+                 ["Mystery Meat", 0, 17.00],
 
+                 ["Sprite", 0, 4.50],
+                 ["Coca Cola", 0, 4.50],
+                 ["Solo", 0, 4.50],
+                 ["Fanta", 0, 4.50],
+                 ["Bottled Water", 0, 1],
+                 ["Lightly Sparkling Water", 0, 2],
+                 ["Ice Coffee", 0, 6.50],
+                 ["Kombucha", 0, 6.50],
+                 ["Choccy Shake", 0, 10.50],
+                 ["Berry Good Shake", 0, 10.50],
+                 ["Vanilla Shake", 0, 10.50],
+                 ["Caramel Shake", 0, 10.50]]
 
 class PizzaOrdering(Screen):
     # These values set the number visible on the item to the quantity of that item in the cart
@@ -139,17 +155,14 @@ pricing_info = [0, 0, 0]  # [Total Cost, Amount of GST, Cost excluding GST]
 class CartScreen(Screen):
     def on_enter(self):
         pricing_info = [0, 0, 0]  # resets the value of pricing_info to prepare for calculations
-        items = ""  # sets all values to nothing so that they start off empty
-        amount_ordered = ""
-        item_cost = ""
-        subtotal_cost = ""
+        items,  amount_ordered, item_cost, subtotal_cost = "", "", "", ""  # sets all values to nothing so that they start off empty
+
         for i in range(len(items_ordered)):
             if items_ordered[i][1] > 0:  # makes sure that it only displays items bought
                 items += str(items_ordered[i][0]) + '\n'  # progressively makes a list of all items bought
                 amount_ordered += str(items_ordered[i][1]) + '\n'  # progressively makes a list of the quantities
                 item_cost += "$" + str(items_ordered[i][2]) + '\n'  # progressively makes a list of the individual costs
-                subtotal_cost += "$" + str(float(items_ordered[i][1] * items_ordered[i][
-                    2])) + '\n'  # progressively makes a list of the total costs of each item
+                subtotal_cost += "$" + str(float(items_ordered[i][1] * items_ordered[i][2])) + '\n'  # progressively makes a list of the total costs of each item
                 pricing_info[0] += float(items_ordered[i][1] * items_ordered[i][2])
 
         pricing_info[1] = round(pricing_info[0] * (1 / 11), 2)  # calculates GST to 2 decimal points
@@ -160,8 +173,9 @@ class CartScreen(Screen):
         self.ids.quantity.text = amount_ordered
         self.ids.item_cost.text = item_cost
         self.ids.totalitemcost.text = subtotal_cost
-        self.ids.total.text = "GST: $" + str(float(pricing_info[1])) + "\n" + "\n" + "Product Cost: $" + str(
-            float(pricing_info[2])) + '\n' + "\n" + "Total: $" + str(float(pricing_info[0]))
+        self.ids.total.text = "GST: $" + str(float(pricing_info[1])) + "\n" \
+                              + "\n" + "Product Cost: $" + str(float(pricing_info[2])) + '\n' \
+                              + "\n" + "Total: $" + str(float(pricing_info[0]))
 
 
 receipt_time = [['']]  # sets a global variable for receipt_time
@@ -175,8 +189,7 @@ class CheckoutScreen(Screen):
             print('File Exists')
         else:
             print('Creating New Database')
-            dbpath = "Databases/" + str(
-                datetime.datetime.now())[0:10] + ".csv"
+            dbpath = "Databases/" + str(datetime.datetime.now())[0:10] + ".csv"
             ff = open(dbpath, "w+")
             ff.write(""",ItemType,Quantity
 0,Vegan Roasted Pineapple,0
@@ -220,8 +233,7 @@ class CheckoutScreen(Screen):
         receipt_time[0] = datetime.datetime.now().strftime("%c")
 
         # Creates a new file in the folder
-        filename = "Receipts/" + str(
-            receipt_time[0]) + ".txt"
+        filename = "Receipts/" + str(receipt_time[0]) + ".txt"
         f = open(filename, "w+")
         receipt_data = "Order processed at" + ' ' + str(receipt_time[0]) + '\n\n'
 
@@ -259,16 +271,12 @@ class CheckoutScreen(Screen):
     def validcc(self, ccnumber, ccexpiry, cvv, ccname, root):
         # checks if the credit card number is an integer and between 8 and 19 characters
         if ccnumber.replace(' ', '').isdecimal() and 8 <= len(ccnumber.replace(' ', '')) <= 19:
-            print(str(sys.getsizeof(ccnumber)) + ' cc')
             # checks if the date is a valid date in correct format
             if ccexpiry.replace('/', '').isdecimal() and len(ccexpiry) == 5:
-                print(str(sys.getsizeof(ccexpiry)) + ' exp')
                 # checks if the cvv is an integer and either 3 or 4 characters
                 if cvv.isdecimal() and (len(cvv) == 4 or len(cvv) == 3):
-                    print(str(sys.getsizeof(cvv)) + ' cvv')
                     # checks if a ccname has been entered
                     if ccname:
-                        print(str(sys.getsizeof(ccname)) + ' name')
                         # if all conditions are met returns True enabling the button
                         return True
         # return True ## for testing purposes
